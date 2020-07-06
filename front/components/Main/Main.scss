@@ -1,0 +1,79 @@
+
+.hero {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: calc(100vh - 60px);
+  .hero__img {
+    background-image: url("https://source.unsplash.com/random/");
+    background-size: cover;
+    background-position: center center;
+  }
+  .hero__text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    h2 {
+      font-family: "Yrsa";
+      font-size: 52px;
+      text-align: center;
+      width: 60%;
+      font-weight: 500;
+      margin-bottom: 40px;
+    }
+    span {
+      font-size: 12px;
+    }
+  }
+}
+
+a {
+  font-weight: 600;
+  color: blue;
+}
+.banner {
+  background-color: #efcb56;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  h3 {
+    font-family: "Yrsa";
+    font-size: 56px;
+    margin-bottom: 30px;
+  }
+  p {
+    width: 50%;
+    text-align: center;
+    font-family: "Yrsa";
+    font-size: 32px;
+    margin-bottom: 30px;
+  }
+  span {
+    font-size: 12px;
+  }
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 50vh;
+  .gallery__item {
+    background-size: cover;
+    background-position: center;
+    background-image: url("https://source.unsplash.com/random/");
+    transition: all 0.2s linear;
+    cursor: pointer;
+    overflow: hidden;
+    &:first-child,
+    &:nth-child(5),
+    &:nth-child(7),
+    &:nth-child(10) {
+      grid-column-start: span 2;
+    }
+    &:hover {
+      filter: blur(50px);
+    }
+  }
+}

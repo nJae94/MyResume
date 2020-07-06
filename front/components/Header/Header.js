@@ -1,0 +1,140 @@
+import React from 'react';
+import styled from 'styled-components';
+import { Menu, Dropdown, message } from 'antd';
+import {MenuIcon, LoginIcon} from '../../style/Icon'
+import { useRouter } from 'next/router'
+import Link from 'next/link';
+
+
+const HeaderWrapper = styled.div`
+  width: 100%;
+  border: 0;
+  top: 0;
+  left: 0;
+  background-color: white;
+  border-bottom: 1px solid #e6e6e6;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 10px 1px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0px;
+  z-index: 2;
+  flex-wrap : no-wrap;
+`;
+
+const HeaderColumn = styled.div`
+  flex-basis:33%;
+  text-align: center;
+  verticalAlign: middle;
+  flex-shrink:1;
+  .logo {
+    font-size: 30px;
+    font-weight: 450;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    div {
+      transform: rotateZ(-15deg);
+      margin: 0px -3px;
+    }
+
+    span {
+      font-size:24px;
+      font-weight: 200;
+      color:#6690FF;
+      margin-bottom: 0.2rem;
+    }
+
+  }
+
+  &:first-child {
+    text-align: center;
+  }
+
+  
+  &:last-child {
+    text-align: center;
+
+    span {
+      display:inline-block;
+      &:first-child {
+        margin-right: 10px;
+        border-right: solid 1px #F0F0F3;
+        padding: 10px;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      span {
+        display:none;
+      }
+    }
+  }
+`;
+
+const Login = styled.div`
+  display:none;
+
+  @media screen and (max-width: 768px) {
+    display:block;
+    button {
+      border: none;
+      background-color:white;
+    }
+  }
+`;
+
+const Header = () => {
+
+  const router = useRouter();
+
+  const onClick = ({ key }) => {
+    message.info(`Click on item ${key}`);
+
+    // router.push(`${key}`);
+  };
+
+  const menu = (
+
+    <Menu onClick={onClick}>
+      <Menu.Item key="1">스택</Menu.Item>
+      <Menu.Item key="2">프로젝트</Menu.Item>
+      <Menu.Item key="3">블로그</Menu.Item>
+    </Menu>
+  );
+    
+    return (
+        <HeaderWrapper>
+          <HeaderColumn>
+          <Dropdown overlay={menu}>
+              <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                <MenuIcon/>
+              </a>
+            </Dropdown>
+          </HeaderColumn>
+          <HeaderColumn>
+            <div className='logo'>
+              R
+              <div>E</div>
+              SUME
+              <span>@nJae94</span>
+            </div>
+          </HeaderColumn>
+          <HeaderColumn>
+            <span> 
+              <Link href="/LoginForm"><a style={{color: '#000000'}}>로그인</a></Link>
+            </span>
+                            
+            <span> 
+              <Link href="/singup"><a style={{color: '#000000'}}>회원가입</a></Link>
+            </span>
+            <Login>
+              <button>로그인</button>
+            </Login>
+          </HeaderColumn>
+        </HeaderWrapper>
+    );
+};
+
+export default Header;
