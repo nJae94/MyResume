@@ -123,7 +123,7 @@ const Header = () => {
           </HeaderColumn>
           <HeaderColumn>
             <span> 
-              <Link href="/LoginForm"><a style={{color: '#000000'}}>로그인</a></Link>
+              <Link href="/login"><a style={{color: '#000000'}}>로그인</a></Link>
             </span>
                             
             <span> 
