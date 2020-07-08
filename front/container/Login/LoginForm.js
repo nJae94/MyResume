@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Divider  } from 'antd';
 import styled from 'styled-components';
 import Router from 'next/router'
 
@@ -9,6 +9,7 @@ const Wrapper = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    margin-top: 5.3rem;
 `;
 const layout = {
     labelCol: {
@@ -73,14 +74,7 @@ const LoginForm = () => {
                     </Form.Item>
             </Form>
             
-            <div style={{padding: '14px 0'}}>
-                    <div style={{float:'left',borderBottom:'solid #E0E0E0 1px', width:'180px', height:'7px'}}/>
-                    <div style={{width:'40px', textAlign:'center', float:'left'}}>
-                        또는
-                    </div>
-                    <div style={{float:'right', borderBottom:'solid #E0E0E0 1px', width:'180px', height:'7px'}}/>
-                    
-            </div>
+            <Divider >또는</Divider>
             
                 <Button onClick={()=> Router.push('/')}>
                     회원가입

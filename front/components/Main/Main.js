@@ -99,6 +99,7 @@ const Main = () => {
                         <PostFooter>여기 날짜</PostFooter>
                     </Post>
                 </Col>
+                
             </Row>
 
         </LeftMenu>
