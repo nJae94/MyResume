@@ -92,15 +92,15 @@ const Header = () => {
   const onClick = ({ key }) => {
     message.info(`Click on item ${key}`);
 
-    // router.push(`${key}`);
+     router.push(`${key}`);
   };
 
   const menu = (
 
     <Menu onClick={onClick}>
-      <Menu.Item key="1">스택</Menu.Item>
-      <Menu.Item key="2">프로젝트</Menu.Item>
-      <Menu.Item key="3">블로그</Menu.Item>
+      <Menu.Item key="/stack">스택</Menu.Item>
+      <Menu.Item key="/project">프로젝트</Menu.Item>
+      <Menu.Item key="/blog">블로그</Menu.Item>
     </Menu>
   );
     
@@ -114,13 +114,18 @@ const Header = () => {
             </Dropdown>
           </HeaderColumn>
           <HeaderColumn>
-            <div className='logo'>
-              R
-              <div>E</div>
-              SUME
-              <span>@nJae94</span>
-            </div>
+            <Link href="/">
+              <a style={{color:'#000000'}}>
+              <div className='logo'>
+                R
+                <div>E</div>
+                SUME
+                <span>@nJae94</span>
+              </div>
+              </a>
+            </Link>
           </HeaderColumn>
+          
           <HeaderColumn>
             <span> 
               <Link href="/login"><a style={{color: '#000000'}}>로그인</a></Link>

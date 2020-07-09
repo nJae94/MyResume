@@ -76,7 +76,7 @@ const LoginForm = () => {
             
             <Divider >또는</Divider>
             
-                <Button onClick={()=> Router.push('/')}>
+                <Button onClick={()=> Router.push('/singup')}>
                     회원가입
                 </Button>
         
