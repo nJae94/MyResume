@@ -1,56 +1,56 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Progress } from 'antd';
+import ProgressBar from '../Module/ProgressBar.js';
 
-const Wrapper = styled.div`
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-width: 100%;
+const StackContainer = styled.div`
+  display: flex;
+  width: 100%;
+  margin: 3rem 0;
+  align-items: center;
 `;
 
-const Title = styled.div`
-    padding: 30px 12px 25px 12px;
-    font-size: 20px;
-    font-weight: bold;
-    border-bottom: solid #E0E0E0 1px;
+const StackImage = styled.img`
+  width: 3.5rem;
+  filter: drop-shadow(1px 2px 5px rgba(30, 144, 255, 0.2));
 `;
 
-const Content = styled.div`
-    display:flex;
-    margin-top: 2rem;
-    align-items: center;
-    justify-content: center;
-    min-width:100%;
+const StackInfoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 1.2rem;
+  width: 80%;
+  @media (max-width: 1024px) {
+    width: -webkit-fill-available;
+  }
 `;
 
-const Img = styled.div`
-    width:20%;
+const StackProgressBar = styled(ProgressBar)`
+  margin-top: 0.5rem;
 `;
 
-const ProgressContent = styled.div`
-    width: 80%;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+const TitleText = styled('h1')`
+  font-weight: 700;
 `;
 
+ const Label = styled.span`
+  font-size: 14px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 500;
+  width: fit-content;
+  color: rgba(0, 0, 0, 0.5);
+`;
 
 const StackInfo = () => {
     return (
-        <Wrapper>
-            <Title>나의 스택 요약</Title>
-            
-            <Content>
-                
-                <Img >사진</Img>
-                <ProgressContent>
-                    <span>리액트</span>
-                    <Progress percent={60} showInfo={false}/>
-                </ProgressContent>
-            </Content>
-        </Wrapper>
+        <StackContainer>
+            <StackImage/>
+
+            <StackInfoWrapper>
+                <TitleText>리액트</TitleText>
+                <Label>설명</Label>
+                <StackProgressBar color='#6BC9E2' progress={30}/>
+            </StackInfoWrapper>
+        </StackContainer>
     )
 }
 
