@@ -1,18 +1,9 @@
 const express = require('express');
 
 const app = express();
+const postRouter = require('./routes/post');
 
-app.get('/',(req,res)=> {
-    res.send("hello");
-});
-
-app.get('/api',(req,res)=> {
-    res.send("hello api");
-});
-
-app.get('/api/posts',(req,res)=> {
-    res.send("hello posts");
-});
+app.use('/post',postRouter);
 
 app.listen(3065,() => {
     console.log("서버실행중");

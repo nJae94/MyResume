@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ProgressBar from '../Module/ProgressBar.js';
+import ReactIcon from '../../asset/Image/ReactIcon.png';
 
 const StackContainer = styled.div`
   display: flex;
@@ -28,28 +29,29 @@ const StackProgressBar = styled(ProgressBar)`
   margin-top: 0.5rem;
 `;
 
-const TitleText = styled('h1')`
+const TitleText = styled.h1`
   font-weight: 700;
 `;
 
  const Label = styled.span`
   font-size: 14px;
-  font-family: 'Noto Sans KR', sans-serif;
   font-weight: 500;
   width: fit-content;
   color: rgba(0, 0, 0, 0.5);
+  margin-bottom: 0.3rem;
 `;
 
 const StackInfo = () => {
     return (
         <StackContainer>
-            <StackImage/>
+            <StackImage src={ReactIcon}/>
 
             <StackInfoWrapper>
                 <TitleText>리액트</TitleText>
-                <Label>설명</Label>
+                <Label>리액트의 기본 개념을 알고 있으며 Hooks를 사용한 코드를 작성합니다.</Label>
                 <StackProgressBar color='#6BC9E2' progress={30}/>
             </StackInfoWrapper>
+
         </StackContainer>
     )
 }

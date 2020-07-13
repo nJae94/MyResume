@@ -37,3 +37,32 @@ module.exports = withSass({
       }
 });
 ```
+
+
+# express 서버 라우트 분리
+
+- require로 불러옴
+
+```
+app.use('/post',postRouter);
+```
+
+# mysql 연결
+
+- mysql2 <= 드라이버
+
+# next.js 에서 이미지 사용
+
+```
+const withImages = require('next-images');
+
+module.exports = withImages(withSass({
+  webpack(config, option){
+    return config;
+  },
+    sassLoaderOptions: {
+        cssModules: true,
+        includePaths: ["absolute/path/a", "absolute/path/b"]
+      }
+}));
+```

@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import StackInfo from './stackInfo';
 
 const Section = styled.section`
   width: 83%;
   max-width: 1200px;
   display: flex;
+  margin-top: 3rem;
   flex-direction: column;
   @media (max-width: 768px) {
     width: 90%;
@@ -21,7 +23,7 @@ const StackList = styled.div`
   padding-bottom: 1rem;
 `;
 
-const TitleText = styled(Text.withComponent('h1'))`
+const TitleText = styled.h1`
   font-weight: 700;
 `;
 
@@ -31,7 +33,7 @@ export default function Stack() {
             <TitleText>나의 스택 소개</TitleText>
 
             <StackList>
-                
+                <StackInfo></StackInfo>
             </StackList>
         </Section>
     )
