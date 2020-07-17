@@ -1,6 +1,7 @@
 import React from 'react';
 import {Helmet} from 'react-helmet';
 import AppLayout from '../components/AppLayout'
+import wrapper from '../store/configureStore';
 
 const App = ({Component, pageProps}) => {
     return (
@@ -44,4 +45,4 @@ const App = ({Component, pageProps}) => {
 
 };
 
-export default App;
+export default wrapper.withRedux(App);
