@@ -66,3 +66,20 @@ module.exports = withImages(withSass({
       }
 }));
 ```
+
+# redux 설정
+
+- configureStore store 정의
+```
+ const store = createStore(reducer, enhancer);
+```
+- enhancer devtools 사용
+```
+const enhancer = process.env.NODE_ENV === 'production'
+      ? compose(applyMiddleware(...middlewares))
+      : composeWithDevTools(
+        applyMiddleware(...middlewares)
+      );
+```
+- next-redux-wrapper 를 사용
+

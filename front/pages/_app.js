@@ -2,6 +2,7 @@ import React from 'react';
 import {Helmet} from 'react-helmet';
 import AppLayout from '../components/AppLayout'
 import wrapper from '../store/configureStore';
+import withReduxSaga from 'next-redux-saga';
 
 const App = ({Component, pageProps}) => {
     return (
@@ -45,4 +46,4 @@ const App = ({Component, pageProps}) => {
 
 };
 
-export default wrapper.withRedux(App);
+export default wrapper.withRedux(withReduxSaga(App));
