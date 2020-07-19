@@ -11,7 +11,10 @@ db.sequelize.sync().then(()=> {
 })
 .catch(console.error);
 
-app.use(cors());
+app.use(cors({
+    origin: true,
+    credentials: false,
+}));
 app.use(express.json());
 //form으로 넘어오는 데이터 처리
 app.use(express.urlencoded({extended: true}));

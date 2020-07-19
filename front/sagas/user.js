@@ -21,10 +21,10 @@ function* signUp(action) {
       type: SIGN_UP_SUCCESS,
     });
   } catch (e) { // loginAPI 실패
-    console.error(e);
+    
     yield put({
       type: SIGN_UP_FAILURE,
-      error: e,
+      error: e.response.data,
     });
   }
 }

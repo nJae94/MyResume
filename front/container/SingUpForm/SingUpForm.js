@@ -1,9 +1,10 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import styled from 'styled-components';
 import { Form, Input, Checkbox, Button } from 'antd';
 import useInput from '../../hooks/useInput';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { SIGN_UP_REQUEST } from '../../reducers/user';
+import Router from 'next/router';
 
 const Wrapper = styled.div`
     width:100%;
@@ -45,7 +46,27 @@ const Singup = () => {
 
     const dispatch = useDispatch();
 
+    const {signUpErrorReason , isSignedUp} = useSelector(state => state.user);
+
+    useEffect(()=> {
+
+        if(isSignedUp)
+        {
+            Router.push('/login');
+        }
+    },[isSignedUp]);
+
+    useEffect(()=> {
+
+        if(signUpErrorReason)
+        {
+            alert(signUpErrorReason);
+        }
+        
+    },[signUpErrorReason]);
+
     const onSubmit = useCallback(
+
         () => {
             if(password !== passwordCheck){
                 return setPasswordError(true);
@@ -54,8 +75,6 @@ const Singup = () => {
             if(!term) {
                 return setTermError(true);
             }
-
-            console.log("회원가입",email, name,password);
 
             return dispatch({
                 type: SIGN_UP_REQUEST,
@@ -68,6 +87,7 @@ const Singup = () => {
         },
         [password, passwordCheck, term],
     )
+
     return (
         <Wrapper>
             <Title>회원가입</Title>
