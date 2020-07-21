@@ -1,8 +1,45 @@
 const express =require('express');
 const bcrypt = require('bcrypt');
 const {User} = require('../models');
-
+const passport = require('passport');
 const router = express.Router();
+                                                
+router.post('/login',(req,res,next)=> {
+
+                                 // done으로 넘어오는 데이터
+    passport.authenticate('local',(err, user, info)=>{
+
+        //서버쪽 에러
+        if(err)
+        {
+            console.error(err);
+            return next(err);
+        }
+        // 클라이언트 에러
+        if(info)
+        {
+            return res.status(401).send(info.reason);
+        }
+                                    // 요건 passport로그인 시 나는 에러 
+        return req.login(user, async(loginErr)=> {
+            if(loginErr)
+            {
+                console.error('passport error');
+                return next(loginErr);
+            }
+
+            return res.status('201').json(user);
+        });
+    
+    })(req,res,next)
+
+});
+
+router.post('/user/logout', (req,res,next)=> {
+    req.logout();
+    req.session.destroy();
+    res.send('ok');
+});
 
 router.post('/', async(req,res,next)=> {
     try{

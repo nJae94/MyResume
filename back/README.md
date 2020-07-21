@@ -9,3 +9,11 @@
 ```
 npx sequelize db:create
 ```
+
+# passport 
+
+```
+passport.authenticate('local',(err, user, info)=>{
+    ```
+
+- authenticate 시 선택한 전략에 따라 데이터를 반환 => passport.login() 실행 => serializeUser를 통해 쿠키랑 유저 id만 보관

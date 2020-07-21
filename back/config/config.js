@@ -1,21 +1,25 @@
-{
+const dotenv= require('dotenv');
+
+dotenv.config();
+
+module.exports = {
   "development": {
     "username": "root",
-    "password": "wldmsl0516!!",
+    "password": process.env.DB_PASSWORD,
     "database": "resume",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": "wldmsl0516!!",
+    "password": process.env.DB_PASSWORD,
     "database": "resume",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
-    "password": "wldmsl0516!!",
+    "password": process.env.DB_PASSWORD,
     "database": "resume",
     "host": "127.0.0.1",
     "dialect": "mysql"
