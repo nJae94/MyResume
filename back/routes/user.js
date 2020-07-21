@@ -5,7 +5,7 @@ const passport = require('passport');
 const router = express.Router();
                                                 
 router.post('/login',(req,res,next)=> {
-
+    console.log("테스트");
                                  // done으로 넘어오는 데이터
     passport.authenticate('local',(err, user, info)=>{
 
@@ -18,7 +18,7 @@ router.post('/login',(req,res,next)=> {
         // 클라이언트 에러
         if(info)
         {
-            return res.status(401).send(info.reason);
+            return res.status(401).send("클라이언트 에러");
         }
                                     // 요건 passport로그인 시 나는 에러 
         return req.login(user, async(loginErr)=> {
@@ -35,13 +35,17 @@ router.post('/login',(req,res,next)=> {
 
 });
 
-router.post('/user/logout', (req,res,next)=> {
+
+
+router.post('/logout', (req,res,next)=> {
     req.logout();
     req.session.destroy();
     res.send('ok');
 });
 
 router.post('/', async(req,res,next)=> {
+
+    console.log("회원가입");
     try{
 
         const exUser = await User.findOne({

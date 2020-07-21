@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Form, Input, Button, Divider  } from 'antd';
 import styled from 'styled-components';
 import Router from 'next/router'
+import { useDispatch } from 'react-redux';
+import {loginRequestAction} from '../../reducers/user';
 
 const Wrapper = styled.div`
     width:100%;
@@ -34,16 +36,30 @@ const Title = styled.div`
 `;
 
 const LoginForm = () => {
+
+    const dispatch = useDispatch();
+
+    const onSubmitForm = useCallback(()=> {
+        
+        const email = ev.value;
+
+        const password = pv.value;
+        
+        dispatch(loginRequestAction({email,password}));
+
+    
+    },[]);
+
     return (
         <Wrapper>
             <Title>
                 로그인 및 회원가입
             </Title>
 
-            <Form style={{marginTop: '1.3rem'}}>
+            <Form style={{marginTop: '1.3rem'}} onFinish={onSubmitForm}>
                 <Form.Item
-                    label="Username"
-                    name="usee"
+                    label="Email"
+                    name="ev"
                     rules={[
                     {
                         required: true,
@@ -56,7 +72,7 @@ const LoginForm = () => {
 
                 <Form.Item
                     label="Password"
-                    name="password"
+                    name="pv"
                     rules={[
                     {
                         required: true,
