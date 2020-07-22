@@ -4,7 +4,8 @@ import { Menu, Dropdown, message } from 'antd';
 import {MenuIcon, LoginIcon} from '../../style/Icon'
 import { useRouter } from 'next/router'
 import Link from 'next/link';
-
+import { useSelector } from 'react-redux';
+import UserInfo from './UserInfo';
 
 const HeaderWrapper = styled.div`
   width: 100%;
@@ -49,6 +50,7 @@ const HeaderColumn = styled.div`
   }
 
   &:first-child {
+    
     text-align: center;
   }
 
@@ -89,6 +91,10 @@ const Header = () => {
 
   const router = useRouter();
 
+  const { user } = useSelector((state) => state.user);
+
+  console.log(user);
+
   const onClick = ({ key }) => {
     message.info(`Click on item ${key}`);
 
@@ -127,16 +133,23 @@ const Header = () => {
           </HeaderColumn>
           
           <HeaderColumn>
-            <span> 
-              <Link href="/login"><a style={{color: '#000000'}}>로그인</a></Link>
-            </span>
+           {user ? <UserInfo/>
+           
+           :
+
+           <>
+              <span> 
+               <Link href="/login"><a style={{color: '#000000'}}>로그인</a></Link>
+               </span>
                             
-            <span> 
-              <Link href="/singup"><a style={{color: '#000000'}}>회원가입</a></Link>
-            </span>
-            <Login>
-              <button>로그인</button>
-            </Login>
+                <span> 
+                  <Link href="/singup"><a style={{color: '#000000'}}>회원가입</a></Link>
+                </span>
+                <Login>
+                  <button>로그인</button>
+                </Login>
+           </>
+          }
           </HeaderColumn>
         </HeaderWrapper>
     );

@@ -1,11 +1,11 @@
 const express =require('express');
 const bcrypt = require('bcrypt');
-const {User} = require('../models');
+const {User,Post,Project} = require('../models');
 const passport = require('passport');
+const db = require('../models');
 const router = express.Router();
                                                 
 router.post('/login',(req,res,next)=> {
-    console.log("테스트");
                                  // done으로 넘어오는 데이터
     passport.authenticate('local',(err, user, info)=>{
 
@@ -16,9 +16,10 @@ router.post('/login',(req,res,next)=> {
             return next(err);
         }
         // 클라이언트 에러
+
         if(info)
         {
-            return res.status(401).send("클라이언트 에러");
+            return res.status(401).send(info.reason);
         }
                                     // 요건 passport로그인 시 나는 에러 
         return req.login(user, async(loginErr)=> {
@@ -28,7 +29,19 @@ router.post('/login',(req,res,next)=> {
                 return next(loginErr);
             }
 
-            return res.status('201').json(user);
+            const fulldata = await User.findOne({where:{id:user.id},
+                attributes: {
+                    exclude: ['password']
+                },
+
+                include: [{
+                    model: Post,
+                },{
+                    model: Project
+                }]
+
+            });
+            return res.status('201').json(fulldata);
         });
     
     })(req,res,next)

@@ -45,11 +45,11 @@ function logInAPI(data) {
 
 function* logIn(action)
 {
-  
 
   try{
-    yield call(logInAPI, action.data.data);
-
+    
+    const result = yield call(logInAPI, action.data);
+    
     yield put({
       type:LOG_IN_SUCCESS,
       data: result.data,

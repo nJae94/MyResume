@@ -1,9 +1,10 @@
-import React, { useCallback } from 'react';
+import React, { useCallback,useEffect } from 'react';
 import { Form, Input, Button, Divider  } from 'antd';
 import styled from 'styled-components';
 import Router from 'next/router'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {loginRequestAction} from '../../reducers/user';
+import useInput from '../../hooks/useInput';
 
 const Wrapper = styled.div`
     width:100%;
@@ -39,16 +40,27 @@ const LoginForm = () => {
 
     const dispatch = useDispatch();
 
+    const [email,onChangeEmail] = useInput('');
+    const [password,onChangePassword] = useInput('');
+
+    const {logInLoading,logInError,logInDone} = useSelector((state)=> state.user);
+
+    useEffect(()=> {
+        if(logInError){
+            alert(logInError);
+        }
+
+        else if(logInDone)
+        {
+            Router.replace('/');
+        }
+    },[logInError,logInDone])
+
     const onSubmitForm = useCallback(()=> {
         
-        const email = ev.value;
+        dispatch(loginRequestAction({email,password}));        
 
-        const password = pv.value;
-        
-        dispatch(loginRequestAction({email,password}));
-
-    
-    },[]);
+    },[email,password]);
 
     return (
         <Wrapper>
@@ -67,7 +79,7 @@ const LoginForm = () => {
                     },
                     ]}
                 >
-                    <Input />
+                    <Input value={email} onChange={onChangeEmail}/>
                 </Form.Item>
 
                 <Form.Item
@@ -80,11 +92,11 @@ const LoginForm = () => {
                     },
                     ]}
                 >
-                    <Input.Password />
+                    <Input.Password value={password} onChange={onChangePassword}/>
                 </Form.Item>
 
                     <Form.Item {...tailLayout}>
-                        <Button type="primary" htmlType="submit">
+                        <Button type="primary" htmlType="submit" loading={logInLoading}>
                             로그인
                         </Button>
                     </Form.Item>
