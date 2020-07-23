@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Row, Col, Card } from 'antd';
+import About from './about';
 
 const Wrapper = styled.div`
     display:flex;
@@ -56,52 +57,7 @@ const Main = () => {
     return (
     <Wrapper>
         <LeftMenu>
-            <Row gutter={[8,24]}>
-                <Col xs={24} md={12} lg={8}>
-                    <Post>
-                        <a>여기 사진</a>
-                        <PostContent>여기 본문</PostContent>
-                        <PostFooter>여기 날짜</PostFooter>
-                    </Post>
-                </Col>
-                <Col xs={24} md={12} lg={8}>
-                    <Post>
-                        <a>여기 사진</a>
-                        <PostContent>여기 본문</PostContent>
-                        <PostFooter>여기 날짜</PostFooter>
-                    </Post>
-                </Col>
-                <Col xs={24} md={12} lg={8}>
-                    <Post>
-                        <a>여기 사진</a>
-                        <PostContent>여기 본문</PostContent>
-                        <PostFooter>여기 날짜</PostFooter>
-                    </Post>
-                </Col>
-                <Col xs={24} md={12} lg={8}>
-                    <Post>
-                        <a>여기 사진</a>
-                        <PostContent>여기 본문</PostContent>
-                        <PostFooter>여기 날짜</PostFooter>
-                    </Post>
-                </Col>
-                <Col xs={24} md={12} lg={8}>
-                    <Post>
-                        <a>여기 사진</a>
-                        <PostContent>여기 본문</PostContent>
-                        <PostFooter>여기 날짜</PostFooter>
-                    </Post>
-                </Col>
-                <Col xs={24} md={12} lg={8}>
-                    <Post>
-                        <a>여기 사진</a>
-                        <PostContent>여기 본문</PostContent>
-                        <PostFooter>여기 날짜</PostFooter>
-                    </Post>
-                </Col>
-                
-            </Row>
-
+            <About/>
         </LeftMenu>
 
         <RightMenu>
