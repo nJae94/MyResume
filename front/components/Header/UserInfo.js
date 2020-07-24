@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { logoutRequestAction } from '../../reducers/user';
 
 
 const Wrapper = styled.div`
@@ -16,12 +17,20 @@ const Button = styled.button`
 `;
 export default function UserInfo() {
 
+    const dispatch = useDispatch();
+
     const {user}= useSelector((state) => state.user);
+    
+    const onLogout = useCallback(()=> {
+    
+        dispatch(logoutRequestAction());
+
+    },[]);
 
     return (
         <Wrapper>
             <span>{user.name}님 환영합니다.</span>
-            <Button>로그아웃</Button>
+            <Button onClick={onLogout}>로그아웃</Button>
         </Wrapper>
     )
 };

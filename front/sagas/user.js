@@ -5,7 +5,10 @@ import {SIGN_UP_REQUEST,
   SIGN_UP_FAILURE,
   LOG_IN_REQUEST,
   LOG_IN_FAILURE,
-  LOG_IN_SUCCESS} from '../reducers/user'
+  LOG_IN_SUCCESS,
+  LOG_OUT_REQUEST,
+  LOG_OUT_FAILURE,
+  LOG_OUT_SUCCESS} from '../reducers/user'
 
 
 
@@ -69,9 +72,41 @@ function* watchLogIn() {
   yield takeLatest(LOG_IN_REQUEST, logIn);
 }
 
+//------------------------------------------------로그아웃----------------------------------------------
+function logOutAPI() {
+  
+  return axios.post('/user/logout');
+}
+
+function* logOut()
+{
+
+  try{
+    
+    yield call(logOutAPI);
+    
+    yield put({
+      type:LOG_OUT_SUCCESS,
+    })
+
+  }
+  catch(e)
+  {
+    yield put({
+      type: LOG_OUT_FAILURE,
+      error: e.response.data
+    })
+  }
+}
+
+function* watchLogOut() {
+  yield takeLatest(LOG_OUT_REQUEST, logOut);
+}
+
 export default function* userSaga() {
     yield all([
       fork(watchSignUp),
       fork(watchLogIn),
+      fork(watchLogOut),
     ]);
   }
