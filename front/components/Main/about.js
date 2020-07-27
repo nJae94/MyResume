@@ -6,7 +6,7 @@ const { Meta } = Card;
 import Profile from '../../asset/Image/Profile2.jpg';
 import './index.scss';
 import Career from '../Career';
-
+import {Github} from '../../style/Icon'
 
 const Wrapper = styled.div`
     dispaly:flex;
@@ -42,6 +42,30 @@ const Info = styled.div`
     margin-bottom:0.5rem;
 `;
 
+const ContactWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
+const ContactText = styled.div`
+    display: flex;
+    flex-direction: column;
+    font-size: 24px;
+    justify-content: flex-start;
+    text-align:left;
+`;
+const ContactImage = styled.div`
+    display: flex;
+    justify-content: center;
+`;
+
+const Icon = styled.a`
+    margin: 1rem;
+    width: 4rem;
+    height: 4rem;
+    cursor: pointer;
+`;
+
 export default function about() {
     return (
         <Wrapper>
@@ -75,8 +99,18 @@ export default function about() {
                     <Cell xs={24} md={12} lg={12}>
                         <Career />
                     </Cell>
-                    <Cell xs={24} md={12} lg={12}>
-                        Contact
+                    <Cell xs={24} md={12} lg={12} style={{display:'flex', alignContent:'center', alignItems:'center', justifyContent:'center'}}>
+                        <ContactWrapper>
+                            <ContactText className="contact">
+                                <div>E-mail : azuretic94@gmail.com</div>
+                                <div>Mobile : 010-3048-1970</div>
+                            </ContactText>
+                            <ContactImage>
+                                    <Icon href="https://github.com/nJae94">
+                                        <Github/>
+                                    </Icon>
+                            </ContactImage>
+                        </ContactWrapper>
                     </Cell>
 
                 </Row>
