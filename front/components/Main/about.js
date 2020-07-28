@@ -35,7 +35,7 @@ const StyledInput = styled.input`
 `;
 
 const Cell = styled(Col)`
-    height: 420px;
+    height: 350px;
 `;
 const Info = styled.div`
     font-size: 30px;
@@ -74,10 +74,10 @@ export default function about() {
                     <Cell xs={24} md={12} lg={12} style={{display:'flex', justifyContent:'center'}}>
                         <Card
                             hoverable
-                            style={{ width: 240 }}
+                            style={{ width: 190 }}
                             cover={<img alt="profile" src={Profile} />}
                         >
-                            <Meta title="정선재 / 27" description="웹 프론트 주니어 개발자" />
+                            <Meta title="정선재 / 27" description="웹 프론트 개발자" />
                         </Card>
                     </Cell>
                     <Cell xs={24} md={12} lg={12} >
