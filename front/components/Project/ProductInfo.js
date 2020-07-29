@@ -5,17 +5,21 @@ import ReactIcon from '../../asset/Image/ReactIcon.png';
 const CardContainer = styled.div`
   display: flex;
   flex-grow: 1;
-  flex-basis: 21%;
+  flex-basis: 25%;
   flex-direction: column;
   width: 100%;
-  max-width: 284.406px;
+  
   position: relative;
   margin-bottom: 2rem;
   cursor: pointer;
-  @media (max-width: 1400px) {
+
+  @media (max-width: 2000px) {
+
     padding: 0 0.45rem;
+
     &:first-child {
       padding-left: 0;
+      margin: auto;
     }
     &:nth-child(4n) {
       padding-right: 0;
@@ -23,7 +27,7 @@ const CardContainer = styled.div`
   }
   @media (max-width: 950px) {
     padding: 0;
-    flex-basis: 51%;
+    flex-basis: 50%;
     position: relative;
     max-width: 47%;
   }

@@ -7,6 +7,7 @@ const Container = styled.div`
   width: 40rem;
   height: 1rem;
   border-radius: 4px;
+  
   @media (max-width: 1024px) {
     width: initial;
   }
@@ -24,7 +25,7 @@ const Bar = styled.div`
     rgba(255, 255, 255, 0.15) 25%,
     transparent 25%,
     transparent 50%,
-    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 70%,
     rgba(255, 255, 255, 0.15) 75%,
     transparent 75%,
     transparent

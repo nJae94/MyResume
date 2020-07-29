@@ -2,6 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import ProgressBar from '../Module/ProgressBar.js';
 import ReactIcon from '../../asset/Image/ReactIcon.png';
+import JS from '../../asset/Image/javascript.png';
+import PHP from '../../asset/Image/PHP.png';
+import NJ from '../../asset/Image/nextjs.svg';
+import '../../style/font.scss';
 
 const StackContainer = styled.div`
   display: flex;
@@ -43,16 +47,46 @@ const TitleText = styled.h1`
 
 const StackInfo = () => {
     return (
+      <div>
         <StackContainer>
             <StackImage src={ReactIcon}/>
 
             <StackInfoWrapper>
-                <TitleText>리액트</TitleText>
-                <Label>리액트의 기본 개념을 알고 있으며 Hooks를 사용한 코드를 작성합니다.</Label>
-                <StackProgressBar color='#6BC9E2' progress={30}/>
+                <TitleText className="Detail">React</TitleText>
+                <Label >리액트의 기본 개념을 알고 있으며 Hooks를 사용한 코드를 작성합니다.</Label>
+                <StackProgressBar color='#6BC9E2' progress={40}/>
             </StackInfoWrapper>
-
         </StackContainer>
+
+        <StackContainer>
+            <StackImage src={NJ}/>
+
+            <StackInfoWrapper>
+                <TitleText className="Detail">Next.js</TitleText>
+                <Label >next.js를 이용한 서버사이드 렌더링 토이프로젝트를 진행한 경험이 있습니다.</Label>
+                <StackProgressBar color='#0395ba' progress={20}/>
+            </StackInfoWrapper>
+        </StackContainer>
+
+        <StackContainer>
+            <StackImage src={JS}/>
+
+            <StackInfoWrapper>
+                <TitleText className="Detail">Javascript</TitleText>
+                <Label >Javascript를 통한 웹 개발 및 유지보수를 진행하고 있으며 es6 문법을 사용할 줄 알고있습니다.</Label>
+                <StackProgressBar color='#F7DF1E' progress={60}/>
+            </StackInfoWrapper>
+        </StackContainer>
+        <StackContainer>
+            <StackImage src={PHP}/>
+
+            <StackInfoWrapper>
+                <TitleText className="Detail">PHP</TitleText>
+                <Label >PHP를 사용한 웹 개발 및 유지보수를 진행하고 있습니다.</Label>
+                <StackProgressBar color='#7281B4' progress={50}/>
+            </StackInfoWrapper>
+        </StackContainer>
+      </div>
     )
 }
 

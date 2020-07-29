@@ -96,7 +96,7 @@ const Header = () => {
   console.log(user);
 
   const onClick = ({ key }) => {
-    message.info(`Click on item ${key}`);
+    message.info(`Move ${key}`);
 
      router.push(`${key}`);
   };

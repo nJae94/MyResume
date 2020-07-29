@@ -1,13 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import ProjectInfo from './ProductInfo';
+import Link from 'next/link';
+import {Plus} from '../../style/Icon';
+import '../../style/font.scss';
 
 const Section = styled.section`
-  width: 84%;
-  max-width: 1200px;
+  width: 100%;
   display: flex;
   margin-top: 3rem;
   flex-direction: column;
+
   @media (max-width: 768px) {
     width: 90%;
   }
@@ -16,8 +19,14 @@ const Section = styled.section`
   }
 `;
 
+const Header = styled.div`
+  display: flex;
+
+`;
+
 const TitleText = styled.h1`
   font-weight: 700;
+  margin-right: 1rem;
 `;
 
 const ProductList = styled.div`
@@ -30,9 +39,17 @@ const ProductList = styled.div`
 export default function Product() {
     return (
         <Section>
-            <TitleText>나의 프로젝트</TitleText>
-
+          <Header>
+            <TitleText className="Title">나의 프로젝트</TitleText>
+            <Link href="/login"><a><Plus/></a></Link>
+          </Header>
+            
             <ProductList>
+                <ProjectInfo />
+                <ProjectInfo />
+                <ProjectInfo />
+                <ProjectInfo />
+                <ProjectInfo />
                 <ProjectInfo />
                 <ProjectInfo />
                 <ProjectInfo />
