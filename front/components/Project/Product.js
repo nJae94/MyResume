@@ -41,7 +41,7 @@ export default function Product() {
         <Section>
           <Header>
             <TitleText className="Title">나의 프로젝트</TitleText>
-            <Link href="/login"><a><Plus/></a></Link>
+            <Link href="/Edit/project"><a><Plus/></a></Link>
           </Header>
             
             <ProductList>
