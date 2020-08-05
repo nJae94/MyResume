@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const postRouter = require('./routes/post');
 const userAPIRouter = require('./routes/user');
+const projectRouter = require('./routes/project');
 const db = require('./models');
 const passportConfig = require('./passport');
 const passport = require('passport');
@@ -39,6 +40,7 @@ app.use(passport.session());
 
 app.use('/api/post',postRouter);
 app.use('/api/user',userAPIRouter);
+app.use('/api/project',projectRouter);
 
 app.listen(3065,() => {
     console.log("서버실행중");
