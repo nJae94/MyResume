@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 import '../../style/font.scss';
 import {Button, Form, Input } from 'antd';
+import DropZone from '../../components/Utils/FileUpload'
 
 const { TextArea } = Input;
 
@@ -17,7 +18,9 @@ export default function project() {
                 <h1 className='title'>프로젝트 등록</h1>
             </div>
 
-            <Form style={{width:'700px'}}>
+            <Form style={{width:'700px'}} encType="multipart/form-data">
+
+                <DropZone />
 
                 <label>프로젝트 이름</label>
                 <Input />
