@@ -5,6 +5,7 @@ import {
     PlusOutlined
   } from '@ant-design/icons';
 import { useDispatch } from 'react-redux';
+import { UPLOAD_IMAGE_REQUEST } from '../../reducers/project';
 
 const Wrapper = styled.div`
     display:flex;
@@ -33,17 +34,23 @@ export default function FileUpload() {
     const onDrop= (files) => {
 
         const ImageformData = new FormData();
-        
-        ImageformData.append("file",files[0]);
 
+        const config = {
+            header: {'content-type': 'multipart/form-data'}
+        }
+        
+        //ImageformData.append("file",files[0]);
+        console.log(files);
         [].forEach.call(files, f=> {
+            console.log(f);
             ImageformData.append('image',f);
         });
         console.log(ImageformData);
-        // dispatch({
-        //     type: UPLOAD_IMAGES_REQUEST,
-        //     data: ImageformData,
-        // });
+
+        dispatch({
+            type: UPLOAD_IMAGE_REQUEST,
+            data: {ImageformData,config},
+        });
 
     }
 

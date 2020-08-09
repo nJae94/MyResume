@@ -59,6 +59,7 @@ router.post('/logout', (req,res,next)=> {
 router.post('/', async(req,res,next)=> {
 
     console.log("회원가입");
+    
     try{
 
         const exUser = await User.findOne({

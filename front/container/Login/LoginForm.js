@@ -104,7 +104,7 @@ const LoginForm = () => {
             
             <Divider >또는</Divider>
             
-                <Button onClick={()=> Router.push('/singup')}>
+                <Button style={{marginTop:'1.2rem'}}onClick={()=> Router.push('/singup')}>
                     회원가입
                 </Button>
         
