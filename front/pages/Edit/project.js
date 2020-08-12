@@ -7,8 +7,11 @@ import {
     PlusOutlined
   } from '@ant-design/icons';
 import useInput from '../../hooks/useInput';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { UPLOAD_IMAGE_REQUEST } from '../../reducers/project';
+import Slider from "react-slick";
+
+
 
 const { TextArea } = Input;
 
@@ -51,6 +54,9 @@ export default function project() {
 
     const dispatch = useDispatch();
 
+    const {imagePaths} = useSelector((state)=> state.project);
+
+
     const onClickImageUpload = React.useCallback(()=> {
 
         imageInput.current.click();
@@ -73,6 +79,14 @@ export default function project() {
         })
     });
 
+    const settings ={
+        dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1
+    }
+
     return (
 
         <Wrapper>
@@ -91,7 +105,13 @@ export default function project() {
                      </Zone>
 
                      <PreImage>
-                         테스트
+                        <Slider {...settings}>
+                            {imagePaths.map((v,i)=> (
+                                <div key={v} style={{ display: 'inline-block'}}>
+                                    <img src={`http://localhost:3065/${v}`} style={{width:'300px', height:'240px'}}/>
+                                </div>
+                            ))}
+                         </Slider>
                      </PreImage>
 
                 </Container>

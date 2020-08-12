@@ -1,10 +1,11 @@
 import { all, call, fork, put, takeLatest } from 'redux-saga/effects';
+import axios from 'axios';
 import { 
       UPLOAD_IMAGE_REQUEST,
       UPLOAD_IMAGE_FAILURE,
       UPLOAD_IMAGE_SUCCESS 
     } from '../reducers/project';
-import axios from 'axios';
+
 
 function UploadImageAPI(data) {
 

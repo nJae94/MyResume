@@ -9,7 +9,7 @@ const passport = require('passport');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv');
-
+const path = require('path');
 dotenv.config();
 
 const app = express();
@@ -25,6 +25,7 @@ app.use(cors({
     origin: 'http://localhost:3000',
     credentials: true,
 }));
+app.use(express.static(path.join(__dirname, 'uploads')));
 app.use(express.json());
 //form으로 넘어오는 데이터 처리
 app.use(express.urlencoded({extended: true}));

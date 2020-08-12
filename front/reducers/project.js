@@ -2,7 +2,7 @@ import produce from 'immer';
 
 export const initialState = {
     Project:[],
-    imagePaths : null,
+    imagePaths : [],
     imageUploading : false,
     imageUploadDone : false,
     imageUploadFalse : null,

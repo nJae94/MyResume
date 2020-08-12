@@ -3,6 +3,7 @@ const {User,Project,Image} = require('../models');
 const multer = require('multer');
 const router = express.Router();
 const fs = require('fs');
+const path = require('path');
 
 router.post('/', (req,res) => {
 
@@ -38,11 +39,11 @@ const upload = multer({
     limits: { fileSize: 20 * 1024 * 1024 }, // 20MB
   });
 
-router.post('/images', upload.none(), async(req,res,next) => {
+router.post('/images', upload.array('image'), async(req,res,next) => {
 
-    console.log("테스트");
+  console.log(req.files);
 
-    res.status(200).send('Ok');
+  res.json(req.files.map((v) => v.filename));
 });
 
 module.exports = router;

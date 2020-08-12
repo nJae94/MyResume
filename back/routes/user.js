@@ -6,6 +6,7 @@ const db = require('../models');
 const router = express.Router();
                                                 
 router.post('/login',(req,res,next)=> {
+    console.log("테스트");
                                  // done으로 넘어오는 데이터
     passport.authenticate('local',(err, user, info)=>{
 
