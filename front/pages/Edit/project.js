@@ -10,8 +10,8 @@ import useInput from '../../hooks/useInput';
 import { useDispatch, useSelector } from 'react-redux';
 import { UPLOAD_IMAGE_REQUEST } from '../../reducers/project';
 import Slider from "react-slick";
-
-
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
 
 const { TextArea } = Input;
 
@@ -80,11 +80,13 @@ export default function project() {
     });
 
     const settings ={
-        dots: true,
+      dots: true,
       infinite: true,
       speed: 500,
       slidesToShow: 1,
-      slidesToScroll: 1
+      slidesToScroll: 1,
+      autoplaySpeed: 2000,
+      autoplay: true,
     }
 
     return (
@@ -105,10 +107,10 @@ export default function project() {
                      </Zone>
 
                      <PreImage>
-                        <Slider {...settings}>
+                        <Slider {...settings} style={{width:'350px', marginLeft:'1rem'}}>
                             {imagePaths.map((v,i)=> (
                                 <div key={v} style={{ display: 'inline-block'}}>
-                                    <img src={`http://localhost:3065/${v}`} style={{width:'300px', height:'240px'}}/>
+                                    <img src={`http://localhost:3065/${v}`} style={{width:'350px', height:'240px'}}/>
                                 </div>
                             ))}
                          </Slider>

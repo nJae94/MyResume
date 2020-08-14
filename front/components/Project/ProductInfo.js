@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from "styled-components";
-import ReactIcon from '../../asset/Image/ReactIcon.png';
+import ReactIcon from '../../public/Image/ReactIcon.png';
 
 const CardContainer = styled.div`
   display: flex;

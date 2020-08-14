@@ -75,7 +75,7 @@ export default function about() {
                         <Card
                             hoverable
                             style={{ width: 190 }}
-                            cover={<img alt="profile" src={Profile} />}
+                            cover={<img alt="profile" src="/Image/Profile2.jpg" />}
                         >
                             <Meta title="정선재 / 27" description="웹 프론트 개발자" />
                         </Card>

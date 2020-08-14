@@ -1,10 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import ProgressBar from '../Module/ProgressBar.js';
-import ReactIcon from '../../asset/Image/ReactIcon.png';
-import JS from '../../asset/Image/javascript.png';
-import PHP from '../../asset/Image/PHP.png';
-import NJ from '../../asset/Image/nextjs.svg';
 import '../../style/font.scss';
 
 const StackContainer = styled.div`
@@ -49,7 +45,7 @@ const StackInfo = () => {
     return (
       <div>
         <StackContainer>
-            <StackImage src={ReactIcon}/>
+            <StackImage src="/Image/ReactIcon.png"/>
 
             <StackInfoWrapper>
                 <TitleText className="Detail">React</TitleText>
@@ -59,7 +55,7 @@ const StackInfo = () => {
         </StackContainer>
 
         <StackContainer>
-            <StackImage src={NJ}/>
+            <StackImage src="/Image/nextjs.svg"/>
 
             <StackInfoWrapper>
                 <TitleText className="Detail">Next.js</TitleText>
@@ -69,16 +65,16 @@ const StackInfo = () => {
         </StackContainer>
 
         <StackContainer>
-            <StackImage src={JS}/>
+            <StackImage src="/Image/javascript.png"/>
 
             <StackInfoWrapper>
                 <TitleText className="Detail">Javascript</TitleText>
-                <Label >Javascript를 통한 웹 개발 및 유지보수를 진행하고 있으며 es6 문법을 사용할 줄 알고있습니다.</Label>
+                <Label >Javascript를 통한 웹 개발 및 유지보수를 진행하고 있으며 es6 문법을 사용합니다.</Label>
                 <StackProgressBar color='#F7DF1E' progress={60}/>
             </StackInfoWrapper>
         </StackContainer>
         <StackContainer>
-            <StackImage src={PHP}/>
+            <StackImage src="/Image/PHP.png"/>
 
             <StackInfoWrapper>
                 <TitleText className="Detail">PHP</TitleText>
