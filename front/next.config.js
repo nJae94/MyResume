@@ -2,17 +2,8 @@ const withSass = require('@zeit/next-sass');
 const withImages = require('next-images');
 
 module.exports = withImages(withSass({
-  webpack: function (config) {
-    config.module.rules.push({
-      test: /\.(eot|woff|woff2|ttf|svg|png|jpg|gif)$/,
-      use: {
-        loader: 'url-loader',
-        options: {
-          limit: 100000,
-          name: '[name].[ext]'
-        }
-      }
-    })
+  esModule: true,
+  webpack(config, options) {
     return config
   },
   
