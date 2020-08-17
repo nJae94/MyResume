@@ -6,11 +6,19 @@ export const initialState = {
     imageUploading : false,
     imageUploadDone : false,
     imageUploadFalse : null,
+    addProjectLoading: false,
+    addProjectDone: false,
+    addProjectError: null,
+
 }
 
 export const UPLOAD_IMAGE_REQUEST = 'UPLOAD_IMAGE_REQUEST';
 export const UPLOAD_IMAGE_SUCCESS = 'UPLOAD_IMAGE_SUCCESS';
 export const UPLOAD_IMAGE_FAILURE = 'UPLOAD_IMAGE_FAILURE';
+
+export const ADD_PROJECT_REQUEST = 'ADD_PROJECT_REQUEST';
+export const ADD_PROJECT_SUCCESS = 'ADD_PROJECT_SUCCESS';
+export const ADD_PROJECT_FAILURE = 'ADD_PROJECT_FAILURE';
 
 const reducer = (state=initialState, action) => {
     return produce(state,(draft)=> {
@@ -33,6 +41,23 @@ const reducer = (state=initialState, action) => {
                 draft.imageUploadDone = false;
                 draft.imageUploadFalse = action.error;
                 break;
+              }
+
+              case ADD_PROJECT_REQUEST: {
+                draft.addProjectLoading= true;
+                draft.addProjectDone = false;
+                draft.addProjectError = null;
+              }
+
+              case ADD_PROJECT_SUCCESS: {
+                  draft.Project.unshift(action.data);
+                  draft.addProjectLoading= false;
+                  draft.addProjectDone = true;
+                  draft.addProjectError = null;
+              }
+              case ADD_PROJECT_FAILURE: {
+                  draft.addProjectError = action.error;
+                  draft.addProjectLoading = false;
               }
 
             default:

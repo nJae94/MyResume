@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import Typed from 'react-typed';
 import { Row, Col, Card } from 'antd';
 const { Meta } = Card;
-import Profile from '../../public/Image/Profile2.jpg';
 import './index.scss';
 import Career from '../Career';
 import {Github} from '../../style/Icon'

@@ -8,10 +8,8 @@ import {
   } from '@ant-design/icons';
 import useInput from '../../hooks/useInput';
 import { useDispatch, useSelector } from 'react-redux';
-import { UPLOAD_IMAGE_REQUEST } from '../../reducers/project';
+import { UPLOAD_IMAGE_REQUEST, ADD_PROJECT_REQUEST } from '../../reducers/project';
 import Slider from "react-slick";
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
 
 const { TextArea } = Input;
 
@@ -80,14 +78,34 @@ export default function project() {
     });
 
     const settings ={
-      dots: true,
+      dots: false,
       infinite: true,
       speed: 500,
       slidesToShow: 1,
-      slidesToScroll: 1,
       autoplaySpeed: 2000,
       autoplay: true,
+      initialSlide: 0,
     }
+
+    const onSubmit = React.useCallback(()=> {
+
+        const formData = new FormData();
+
+        imagePaths.forEach((p)=> {
+            formData.append('image',p);
+        });
+
+        formData.append('title', title);
+        formData.append('kind', kind);
+        formData.append('category', category);
+        formData.append('tag', tag);
+        formData.append('content', content);
+
+        dispatch({
+            type: ADD_PROJECT_REQUEST,
+            data: formData
+        })
+    },[title,imagePaths,kind,category,tag,content]);
 
     return (
 
@@ -96,7 +114,7 @@ export default function project() {
                 <h1 className='title'>프로젝트 등록</h1>
             </div>
            
-            <Form style={{width:'700px'}} encType="multipart/form-data">
+            <Form style={{width:'700px'}} encType="multipart/form-data" onFinish={onSubmit}>
 
                 {/* <DropZone /> */}
                 <Container>
@@ -107,13 +125,16 @@ export default function project() {
                      </Zone>
 
                      <PreImage>
-                        <Slider {...settings} style={{width:'350px', marginLeft:'1rem'}}>
+                         {imagePaths.length === 1 ? <div><img src={`http://localhost:3065/${imagePaths[0]}`} style={{width:'350px', height:'240px'}}/></div> 
+                         : 
+                         <Slider {...settings} style={{width:'350px', marginLeft:'1rem'}}>
                             {imagePaths.map((v,i)=> (
                                 <div key={v} style={{ display: 'inline-block'}}>
                                     <img src={`http://localhost:3065/${v}`} style={{width:'350px', height:'240px'}}/>
                                 </div>
                             ))}
-                         </Slider>
+                         </Slider>}
+                        
                      </PreImage>
 
                 </Container>
@@ -141,14 +162,10 @@ export default function project() {
                 <br />
                 <br />
 
-                    {/* <Button >이미지 업로드</Button> */}
-                    <Button type="submit" type='primary'>
+
+                    <Button type="primary" htmlType="submit">
                         확인
                     </Button>
-
-             
-                
-
             </Form>
         </Wrapper>
     )
