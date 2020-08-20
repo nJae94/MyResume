@@ -9,7 +9,7 @@ export const initialState = {
     addProjectLoading: false,
     addProjectDone: false,
     addProjectError: null,
-
+    loadProjectDone : false,
 }
 
 export const UPLOAD_IMAGE_REQUEST = 'UPLOAD_IMAGE_REQUEST';
@@ -61,19 +61,22 @@ const reducer = (state=initialState, action) => {
               }
               case ADD_PROJECT_FAILURE: {
                   draft.addProjectError = action.error;
+                  draft.addProjectDone = false;
                   draft.addProjectLoading = false;
               }
 
               case LOAD_PROJECT_REQUEST: {
+                  draft.loadProjectDone = false;
+                  draft.Project = [];
                 break;
               }
 
               case LOAD_PROJECT_SUCCESS: {
                   
                 action.data.forEach((d) => {
-                    draft.followerList.push(d);
+                    draft.Project.push(d);
                   });
-
+                  draft.loadProjectDone = true;
                   break;
               }
               case LOAD_PROJECT_FAILURE: {

@@ -81,9 +81,7 @@ function* watchUploadProject() {
 
 function LoadProjectAPI(userId) {
 
-  return axios.get(`/project/${userId}`, {
-    withCredentials: true,
-  });
+  return axios.get(`/project/${userId}`);
 }
 
 function* LoadProject(action)

@@ -10,6 +10,7 @@ import useInput from '../../hooks/useInput';
 import { useDispatch, useSelector } from 'react-redux';
 import { UPLOAD_IMAGE_REQUEST, ADD_PROJECT_REQUEST } from '../../reducers/project';
 import Slider from "react-slick";
+import Router from 'next/router'
 
 const { TextArea } = Input;
 
@@ -44,7 +45,7 @@ export default function project() {
 
     const [title, onChangeTitle] = useInput('');
     const [category, onChangeCategory] = useInput('');
-    const [kind, onChangeKind] = useInput('');
+    const [kinds, onChangeKinds] = useInput('');
     const [tag, onChangeTag] = useInput('');
     const [content, onChangeContent] = useInput('');
 
@@ -52,7 +53,7 @@ export default function project() {
 
     const dispatch = useDispatch();
 
-    const {imagePaths} = useSelector((state)=> state.project);
+    const {imagePaths,addProjectDone, addProjectError} = useSelector((state)=> state.project);
 
 
     const onClickImageUpload = React.useCallback(()=> {
@@ -96,7 +97,7 @@ export default function project() {
         });
 
         formData.append('title', title);
-        formData.append('kind', kind);
+        formData.append('kinds', kinds);
         formData.append('category', category);
         formData.append('tag', tag);
         formData.append('content', content);
@@ -104,8 +105,26 @@ export default function project() {
         dispatch({
             type: ADD_PROJECT_REQUEST,
             data: formData
-        })
-    },[title,imagePaths,kind,category,tag,content]);
+        });
+
+
+    },[title,imagePaths,kinds,category,tag,content]);
+    
+    React.useEffect(() => {
+
+        if(addProjectDone && addProjectError === null )
+        {
+            Router.replace('/project');
+        }
+    },[addProjectDone]);
+
+    React.useEffect(() => {
+
+        if(addProjectError)
+        {
+            alert(addProjectError);
+        }
+    },[addProjectError]);
 
     return (
 
@@ -145,7 +164,7 @@ export default function project() {
                 <br />
                 <br />
                 <label>종류</label>
-                <Input name='kind' value={kind} onChange={onChangeKind} />
+                <Input name='kinds' value={kinds} onChange={onChangeKinds} />
                 <br />
                 <br />
                 <label>분류</label>

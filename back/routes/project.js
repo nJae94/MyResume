@@ -40,13 +40,11 @@ router.post('/',isLoggedIn, upload.none(), async (req, res, next) => {
 
     try {
 
-      console.log(req.body);
-
       //const userId = req.user.id === null ? 0 : req.user.id;
 
       const project = await Project.create({
         title: req.body.title,
-        kind: req.body.kind,
+        kinds: req.body.kinds,
         category: req.body.category,
         tag: req.body.tag,
         content: req.body.content,
@@ -88,8 +86,6 @@ router.post('/',isLoggedIn, upload.none(), async (req, res, next) => {
 
 router.post('/images', upload.array('image'), async(req,res,next) => {
 
-  console.log(req.files);
-
   res.json(req.files.map((v) => v.filename));
 });
 
@@ -98,6 +94,8 @@ router.get('/:id', async(req,res,next) => {
   try
   {
     console.log("테스트");
+    console.log(req.params.id);
+
     const project = await Project.findAll({
       where: {
         UserId: parseInt(req.params.id, 10)

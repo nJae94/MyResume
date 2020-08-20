@@ -40,24 +40,25 @@ const ProjectList = styled.div`
 
 export default function ProjectForm() {
 
-  const {Project} = useSelector((state) => state.project);
+  const {Project, loadProjectDone} = useSelector((state) => state.project);
 
   const {user} = useSelector((state)=> state.user);
 
+  console.log(Project.length);
 
   const dispatch = useDispatch();
 
-  console.log(Project);
-
   useEffect(()=> {
+
     dispatch({
       type: LOAD_PROJECT_REQUEST,
-      data: 1 
-    })
-  })
+      data: user.id,
+    });
+
+  },[]);
   
 
-  console.log(Project);
+  
     return (
         <Section>
           <Header>
@@ -66,14 +67,12 @@ export default function ProjectForm() {
           </Header>
             
             <ProjectList>
-                <ProjectInfo />
-                <ProjectInfo />
-                <ProjectInfo />
-                <ProjectInfo />
-                <ProjectInfo />
-                <ProjectInfo />
-                <ProjectInfo />
-                <ProjectInfo />
+              
+               {Project.map((p,index)=> {
+                 return (
+                  <ProjectInfo key={index} project={p}/>
+                 );
+               })}
             </ProjectList>
         </Section>
         
