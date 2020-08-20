@@ -5,6 +5,7 @@ const router = express.Router();
 const fs = require('fs');
 const path = require('path');
 const { isLoggedIn } = require('./middlewares');
+const db = require('../models');
 
 try {
     fs.accessSync('uploads');
@@ -90,6 +91,32 @@ router.post('/images', upload.array('image'), async(req,res,next) => {
   console.log(req.files);
 
   res.json(req.files.map((v) => v.filename));
+});
+
+router.get('/:id', async(req,res,next) => {
+
+  try
+  {
+    console.log("테스트");
+    const project = await Project.findAll({
+      where: {
+        UserId: parseInt(req.params.id, 10)
+      },
+      include: [{
+        model: Image,
+      }]
+    });
+
+    res.json(project);
+
+  }
+
+  catch (e){
+
+    console.log(e);
+    next(e);
+
+  }
 });
 
 module.exports = router;

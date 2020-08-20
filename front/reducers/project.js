@@ -20,6 +20,10 @@ export const ADD_PROJECT_REQUEST = 'ADD_PROJECT_REQUEST';
 export const ADD_PROJECT_SUCCESS = 'ADD_PROJECT_SUCCESS';
 export const ADD_PROJECT_FAILURE = 'ADD_PROJECT_FAILURE';
 
+export const LOAD_PROJECT_REQUEST = 'LOAD_PROJECT_REQUEST';
+export const LOAD_PROJECT_SUCCESS = 'LOAD_PROJECT_SUCCESS';
+export const LOAD_PROJECT_FAILURE = 'LOAD_PROJECT_FAILURE';
+
 const reducer = (state=initialState, action) => {
     return produce(state,(draft)=> {
         switch(action.type)
@@ -58,6 +62,22 @@ const reducer = (state=initialState, action) => {
               case ADD_PROJECT_FAILURE: {
                   draft.addProjectError = action.error;
                   draft.addProjectLoading = false;
+              }
+
+              case LOAD_PROJECT_REQUEST: {
+                break;
+              }
+
+              case LOAD_PROJECT_SUCCESS: {
+                  
+                action.data.forEach((d) => {
+                    draft.followerList.push(d);
+                  });
+
+                  break;
+              }
+              case LOAD_PROJECT_FAILURE: {
+                  break;
               }
 
             default:

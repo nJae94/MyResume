@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import ProjectInfo from './ProductInfo';
+import ProjectInfo from '../../components/Project/ProductInfo';
 import Link from 'next/link';
 import {Plus} from '../../style/Icon';
 import '../../style/font.scss';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { LOAD_PROJECT_REQUEST } from '../../reducers/project';
 
 const Section = styled.section`
   width: 100%;
@@ -30,16 +31,31 @@ const TitleText = styled.h1`
   margin-right: 1rem;
 `;
 
-const ProductList = styled.div`
+const ProjectList = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
 `;
 
-export default function Product() {
+export default function ProjectForm() {
 
   const {Project} = useSelector((state) => state.project);
+
+  const {user} = useSelector((state)=> state.user);
+
+
+  const dispatch = useDispatch();
+
+  console.log(Project);
+
+  useEffect(()=> {
+    dispatch({
+      type: LOAD_PROJECT_REQUEST,
+      data: 1 
+    })
+  })
+  
 
   console.log(Project);
     return (
@@ -49,7 +65,7 @@ export default function Product() {
             <Link href="/Edit/project"><a><Plus/></a></Link>
           </Header>
             
-            <ProductList>
+            <ProjectList>
                 <ProjectInfo />
                 <ProjectInfo />
                 <ProjectInfo />
@@ -58,7 +74,7 @@ export default function Product() {
                 <ProjectInfo />
                 <ProjectInfo />
                 <ProjectInfo />
-            </ProductList>
+            </ProjectList>
         </Section>
         
     )
