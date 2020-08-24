@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from "styled-components";
-import ReactIcon from '../../public/Image/ReactIcon.png';
 
 const CardContainer = styled.div`
+
   display: flex;
   flex-grow: 1;
   flex-basis: 25%;
@@ -13,13 +13,14 @@ const CardContainer = styled.div`
   margin-bottom: 2rem;
   cursor: pointer;
 
+  margin: auto;
+
   @media (max-width: 2000px) {
 
     padding: 0 0.45rem;
 
     &:first-child {
       padding-left: 0;
-      margin: auto;
     }
     &:nth-child(4n) {
       padding-right: 0;
@@ -30,23 +31,25 @@ const CardContainer = styled.div`
     flex-basis: 50%;
     position: relative;
     max-width: 47%;
+    margin-bottom: 2rem;
   }
   @media (max-width: 400px) {
     max-width: 100%;
     float: unset;
     position: unset;
     flex-basis: 100%;
+    margin-bottom: 2rem;
   }
 `;
 
 const CardImage = styled.div`
   height: 350px;
   min-width: 100%;
+  background-image: url(${props => props.src});
   background-size: cover;
-  background-position: center;
+  background-repeat: no-repeat;
   position: relative;
   border-radius: 4px;
-  background-image: url(${props => props.src});
   
   @media (max-width: 400px) {
     height: 180px;
@@ -104,25 +107,33 @@ const CardMeta = styled.div`
   margin-top: 0.25rem;
 `;
 
-export default function ProductInfo() {
+export default function ProductInfo({project}) {
+
+  const tags = project.tag.split(',');
+
     return (
        <CardContainer>
 
-            <CardImage src={ReactIcon}>
+            <CardImage src={`http://localhost:3065/${project.Images[0].src}`}>
 
             <CardPartList>
-                    <CardPart>테스트</CardPart>
+              {tags.map((t,index)=> {
+                return (
+                  <CardPart key={t}>{t}</CardPart>
+                )
+              })}
+                
             </CardPartList>
             </CardImage>
 
             <CardInfo>
-                <CardCategory >테스트2</CardCategory>
+                <CardCategory >{project.kinds}</CardCategory>
 
-                <CardTitle>프로젝트 제목</CardTitle>
+                <CardTitle>{project.title}</CardTitle>
 
                 <CardMeta>
-                    <label>토이프로젝트</label>
-                    <label>날짜</label>
+                    <label>{project.category}</label>
+                    <label>{project.createdAt}</label>
                 </CardMeta>
             </CardInfo>
            
