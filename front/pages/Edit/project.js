@@ -112,8 +112,9 @@ export default function project() {
     
     React.useEffect(() => {
 
-        if(addProjectDone && addProjectError === null )
+        if(addProjectDone)
         {
+            console.log("테스트");
             Router.replace('/project');
         }
     },[addProjectDone]);

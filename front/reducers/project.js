@@ -25,6 +25,8 @@ export const LOAD_PROJECT_SUCCESS = 'LOAD_PROJECT_SUCCESS';
 export const LOAD_PROJECT_FAILURE = 'LOAD_PROJECT_FAILURE';
 
 const reducer = (state=initialState, action) => {
+
+  
     return produce(state,(draft)=> {
         switch(action.type)
         {
@@ -51,6 +53,7 @@ const reducer = (state=initialState, action) => {
                 draft.addProjectLoading= true;
                 draft.addProjectDone = false;
                 draft.addProjectError = null;
+                break;
               }
 
               case ADD_PROJECT_SUCCESS: {
@@ -58,11 +61,13 @@ const reducer = (state=initialState, action) => {
                   draft.addProjectLoading= false;
                   draft.addProjectDone = true;
                   draft.addProjectError = null;
+                  break;
               }
               case ADD_PROJECT_FAILURE: {
                   draft.addProjectError = action.error;
                   draft.addProjectDone = false;
                   draft.addProjectLoading = false;
+                  break;
               }
 
               case LOAD_PROJECT_REQUEST: {

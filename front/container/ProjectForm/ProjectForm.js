@@ -70,9 +70,9 @@ export default function ProjectForm() {
               
                {Project.map((p,index)=> {
                  return (
-                   <>
+              
                   <ProjectInfo key={index} project={p}/>
-                  </>
+              
                  );
                })}
             </ProjectList>

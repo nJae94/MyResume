@@ -75,6 +75,8 @@ router.post('/',isLoggedIn, upload.none(), async (req, res, next) => {
         ]
       });
 
+      console.log(fullProject);
+
       res.status(201).json(fullProject);
 
     }

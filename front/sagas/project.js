@@ -79,7 +79,7 @@ function* watchUploadProject() {
 
 //----------------------------------------------------------------------------------------------프로젝트 업로드-----------------------------------------------------------------------------------------------------
 
-function LoadProjectAPI(userId) {
+function LoadProjectAPI(userId = 1) {
 
   return axios.get(`/project/${userId}`);
 }
