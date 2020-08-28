@@ -1,19 +1,21 @@
-import React from 'react'
+import React, { useState, useCallback } from 'react'
 import styled from "styled-components";
 import Blog from '../components/Blog'
-import { Input, Button } from 'antd';
+import { Input, Button, Form, Card,Avatar   } from 'antd';
 import Router from 'next/router';
 
 const Wrapper = styled.div`
     width:80%;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
 `;
 
 const BlogHeader = styled.div`
     margin-top: 2rem;
     display: flex;
     align-items: center;
-    position: relative;
+    justify-content: center;
 `;
 
 const SearchInput = styled(Input)`
@@ -48,23 +50,52 @@ const NewPostButton = styled(Button)`
     border-color: rgb(52, 58, 64);
     border-image: initial;
     transition: all 0.125s ease-in 0s;
+    float:right;
 `;
 
+const ContentWrapper = styled.div`
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+
+
+
 export default function blog() {
+
+    const { Meta } = Card;
+
+    const [text, setText] = useState('');
+
+    const onChangeText = useCallback((e) => {
+        setText(e.target.value);
+      }, []);
+
     return (
         <Wrapper>
             <BlogHeader>
-                 <form >
-                    <SearchInput 
-                    placeholder="검색" 
-                    />
-                </form>
+                <Form style={{ width:'60%' , margin: '3rem 0 20px' }} encType="multipart/form-data">
+                    
+                    <Input.TextArea placeholder="내용을 입력하세요" value={text} onChange={onChangeText} />
 
-                <NewPostButton onClick={()=> Router.push('/Edit/post')}>
-                    새 글 작성
-                </NewPostButton>
+                    <div>
+                        <NewPostButton >포스트 등록</NewPostButton>
+                    </div>
+                </Form>
             </BlogHeader>
-            <Blog/>
+
+            <ContentWrapper>
+                <Card style={{ width: '60%', marginTop: 16 }}>
+                    <Meta
+                        avatar={
+                        <Avatar>정</Avatar>
+                        }
+                        title="Card title"
+                        description="This is the description"
+                    />
+                </Card>
+            </ContentWrapper>
         </Wrapper>
     )
 }
