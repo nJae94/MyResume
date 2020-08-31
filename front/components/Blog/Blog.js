@@ -1,91 +1,66 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Row, Col, Card } from 'antd';
+import { Input, Card,Avatar,Pagination} from 'antd';
+import EidtFrom from '../../container/BlogForm'
 
 
-const Wrapper = styled.div`
-    display:flex;
-    width:100%;
-    margin-top: 3rem;
-    justify-content: center;
-    
-`
-
-const Post = styled(Card)`
-    width: 20rem;
-    box-shadow: rgba(0, 0, 0, 0.04) 0px 4px 16px 0px;
+const BlogHeader = styled.div`
+    margin-top: 2rem;
     display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+
+const SearchInput = styled(Input)`
+  background-color: ${props => props.theme.bgColor};
+  border-color: rgb(52, 58, 64);
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 3px;
+  height: auto;
+  text-align: center;
+  width: 70%;
+  
+  &::placeholder {
+    opacity: 0.8;
+    font-weight: 200;
+  }
+`;
+
+
+const ContentWrapper = styled.div`
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
-    background: white;
-    border-radius: 4px;
-    transition: box-shadow 0.25s ease-in 0s, transform 0.25s ease-in 0s;
-    margin: 1rem;
-    overflow: hidden;
 `;
-const PostContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-  flex: 1 1 0%;
-`;
-const PostFooter = styled.div`
-  display: flex;
-  font-size: 0.75rem;
-  line-height: 1.5;
-  justify-content: space-between;
-  padding: 0.625rem 1rem;
-  border-top: 3px solid rgb(250, 250, 250);
-`;
+
+
 
 export default function Blog() {
+
+    const { Meta } = Card;
+
     return (
-        <Wrapper>
+        <>
+            <BlogHeader>
+               <EidtFrom />
+            </BlogHeader>
 
-             <Row gutter={[8,24]}>
-                <Col xs={24} md={12} lg={8}>
-                    <Post>
-                        <a>여기 사진</a>
-                        <PostContent>여기 본문</PostContent>
-                        <PostFooter>여기 날짜</PostFooter>
-                    </Post>
-                </Col>
-                <Col xs={24} md={12} lg={8}>
-                    <Post>
-                        <a>여기 사진</a>
-                        <PostContent>여기 본문</PostContent>
-                        <PostFooter>여기 날짜</PostFooter>
-                    </Post>
-                </Col>
-                <Col xs={24} md={12} lg={8}>
-                    <Post>
-                        <a>여기 사진</a>
-                        <PostContent>여기 본문</PostContent>
-                        <PostFooter>여기 날짜</PostFooter>
-                    </Post>
-                </Col>
-                <Col xs={24} md={12} lg={8}>
-                    <Post>
-                        <a>여기 사진</a>
-                        <PostContent>여기 본문</PostContent>
-                        <PostFooter>여기 날짜</PostFooter>
-                    </Post>
-                </Col>
-                <Col xs={24} md={12} lg={8}>
-                    <Post>
-                        <a>여기 사진</a>
-                        <PostContent>여기 본문</PostContent>
-                        <PostFooter>여기 날짜</PostFooter>
-                    </Post>
-                </Col>
-                <Col xs={24} md={12} lg={8}>
-                    <Post>
-                        <a>여기 사진</a>
-                        <PostContent>여기 본문</PostContent>
-                        <PostFooter>여기 날짜</PostFooter>
-                    </Post>
-                </Col>
+            <ContentWrapper>
+                <Card style={{ width: '60%', marginTop: 16 }}>
+                    <Meta
+                        avatar={
+                        <Avatar>정</Avatar>
+                        }
+                        title="정선재"
+                        description="테스트 내용"
+                    />
+                </Card>
 
-            </Row>
-        </Wrapper>
+                <Pagination style={{marginTop:'2rem'}} defaultCurrent={1} total={50} />
+            </ContentWrapper>
+        </>
     )
 }

@@ -6,6 +6,7 @@ import {Plus} from '../../style/Icon';
 import '../../style/font.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { LOAD_PROJECT_REQUEST } from '../../reducers/project';
+import Router from 'next/router';
 
 const Section = styled.section`
   width: 100%;
@@ -50,10 +51,20 @@ export default function ProjectForm() {
 
   useEffect(()=> {
 
-    dispatch({
-      type: LOAD_PROJECT_REQUEST,
-      data: user.id,
-    });
+    if(!user)
+    {
+      alert("로그인 후 확인 하실 수 있습니다.");
+      Router.replace('/');
+    }
+
+    else{
+
+      dispatch({
+        type: LOAD_PROJECT_REQUEST,
+        data: 1,
+      });
+
+    }
 
   },[]);
   
