@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { Row, Col, Card } from 'antd';
 import About from './about';
+import { useDispatch } from 'react-redux';
+import {LOAD_USER_REQUEST} from '../../reducers/user';
 
 const Wrapper = styled.div`
     display:flex;
@@ -54,6 +56,16 @@ const PostFooter = styled.div`
 `;
 
 const Main = () => {
+
+    const dispatch = useDispatch();
+
+    useEffect(()=> {
+
+        dispatch({
+            type: LOAD_USER_REQUEST,
+        })
+    },[]);
+    
     return (
     <Wrapper>
         <LeftMenu>

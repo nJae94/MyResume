@@ -7,6 +7,7 @@ import '../../style/font.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { LOAD_PROJECT_REQUEST } from '../../reducers/project';
 import Router from 'next/router';
+import { LOAD_USER_REQUEST } from '../../reducers/user';
 
 const Section = styled.section`
   width: 100%;
@@ -41,6 +42,7 @@ const ProjectList = styled.div`
 
 export default function ProjectForm() {
 
+
   const {Project, loadProjectDone} = useSelector((state) => state.project);
 
   const {user} = useSelector((state)=> state.user);
@@ -67,7 +69,8 @@ export default function ProjectForm() {
     }
 
   },[]);
-  
+
+ 
 
   
     return (

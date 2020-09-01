@@ -4,9 +4,43 @@ const {User,Post,Project} = require('../models');
 const passport = require('passport');
 const db = require('../models');
 const router = express.Router();
+
+router.get('/', async(req,res,next)=> {
+
+   try {
+
+    if(req.user)
+    {
+        const fulldata = await User.findOne({
+            where:{id:req.user.id},
+            attributes: {
+                exclude: ['password']
+            },
+
+            include: [{
+                model: Post,
+            },{
+                model: Project
+            }]
+
+        });
+        res.status(200).json(fulldata);
+    }
+    else {
+        res.status(200).json(null);
+    }
+    
+   }
+   catch(err)
+   {
+       console.error(err);
+       next(err);
+   }
+
+});
                                                 
 router.post('/login',(req,res,next)=> {
-    console.log("테스트");
+   
                                  // done으로 넘어오는 데이터
     passport.authenticate('local',(err, user, info)=>{
 
