@@ -1,6 +1,8 @@
 import React, {useState, useCallback} from 'react';
 import styled from 'styled-components';
 import { Input, Form, Button} from 'antd';
+import { useDispatch } from 'react-redux';
+import { ADD_POST_REQUEST } from '../../reducers/post';
 
 const NewPostButton = styled(Button)`
     margin-left: 1.25rem;
@@ -25,21 +27,40 @@ export default function BlogForm() {
 
     const [text, setText] = useState('');
 
-    const onChangeText = useCallback((e) => {
-        setText(e.target.value);
-      }, []);
+    const dispatch = useDispatch();
+
+    const onClick = useCallback((e)=> {
+        
+        console.log(text);
+
+        if(!text)
+        {
+            return alert('내용을 작성하세요.');
+        }
+
+        
+        dispatch({
+            type: ADD_POST_REQUEST,
+            data : {
+                UserId:1,
+                content: text,
+            }
+        });
+
+
+    },[text]);
 
 
     return (
         <>
-             <Form style={{ width:'60%' , margin: '3rem 0 20px' }} encType="multipart/form-data">
+             <Form style={{ width:'60%' , margin: '3rem 0 20px' }} encType="multipart/form-data" onFinish={onClick}>
                     
-                    <Input.TextArea placeholder="내용을 입력하세요" value={text} onChange={onChangeText} />
+                    <Input.TextArea placeholder="내용을 입력하세요" value={text} onChange={({target:{value}}) => setText(value)} />
 
                     <div>
-                        <NewPostButton >포스트 등록</NewPostButton>
+                        <NewPostButton type="primary" htmlType="submit">포스트 등록</NewPostButton>
                     </div>
-                </Form>
+            </Form>
         </>
     )
 }
