@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Input, Card,Avatar,Pagination} from 'antd';
 import EidtFrom from '../../container/BlogForm'
+import { useDispatch } from 'react-redux';
 
 
 const BlogHeader = styled.div`
@@ -41,6 +42,9 @@ const ContentWrapper = styled.div`
 export default function Blog() {
 
     const { Meta } = Card;
+
+    const dispatch = useDispatch();
+
 
     return (
         <>
