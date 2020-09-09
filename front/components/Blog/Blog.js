@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Input, Card,Avatar,Pagination} from 'antd';
 import EidtFrom from '../../container/BlogForm'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { LOAD_POST_REQUEST } from '../../reducers/post';
 
 
 const BlogHeader = styled.div`
@@ -45,6 +46,25 @@ export default function Blog() {
 
     const dispatch = useDispatch();
 
+    const [pages,setPages] = useState(1);
+
+    const onChange = page => {
+        setPages(page);
+    }
+
+    console.log(pages);
+    useEffect(()=> {
+
+        dispatch({
+            type: LOAD_POST_REQUEST,
+            data: pages,
+        });
+
+    },[pages]);
+
+    const {mainPosts} = useSelector((state) => state.post);
+
+    console.log(mainPosts);
 
     return (
         <>
@@ -53,17 +73,26 @@ export default function Blog() {
             </BlogHeader>
 
             <ContentWrapper>
-                <Card style={{ width: '60%', marginTop: 16 }}>
-                    <Meta
-                        avatar={
-                        <Avatar>정</Avatar>
-                        }
-                        title="정선재"
-                        description="테스트 내용"
-                    />
-                </Card>
+                {
+                   mainPosts.length > 0 && mainPosts.map((m) => {
+                        return (
+                           
+                                <Card key={m.createdAt} style={{ width: '60%', marginTop: 16 }}>
+                                    <Meta
+                                        avatar={
+                                        <Avatar>정</Avatar>
+                                        }
+                                        title={m.User.name}
+                                        description={m.content}
+                                    />
+                                </Card>
+                            
+                        )
+                    })
+                }
+                
 
-                <Pagination style={{marginTop:'2rem'}} defaultCurrent={1} total={50} />
+                <Pagination style={{marginTop:'2rem'}} current={pages} onChange={onChange} total={mainPosts.length} />
             </ContentWrapper>
         </>
     )

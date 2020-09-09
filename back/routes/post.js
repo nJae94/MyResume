@@ -35,4 +35,40 @@ router.post('/', async (req,res,next) => {
     
 });
 
+router.get('/posts', async(req,res,next)=> {
+
+    try{
+
+        console.log("test");
+
+        let value = 0;
+
+        if(req.query.off > 1)
+        {
+            value = parseInt((req.query.off - 1) * 10, 10); 
+        }
+
+        const posts = await db.Post.findAll({
+
+            include: [{
+                model: db.User,
+                attributes: ['name','email'],
+              }],
+
+            order: [['createdAt', 'DESC']],
+            offset: value, 
+            limit: parseInt(req.query.limit, 10),
+        });
+
+        res.json(posts);
+    }
+
+    catch(e)
+    {
+        console.log(e);
+        next(e);
+    }
+
+});
+
 module.exports = router;
