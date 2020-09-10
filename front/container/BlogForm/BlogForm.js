@@ -2,7 +2,7 @@ import React, {useState, useCallback} from 'react';
 import styled from 'styled-components';
 import { Input, Form, Button} from 'antd';
 import { useDispatch } from 'react-redux';
-import { ADD_POST_REQUEST } from '../../reducers/post';
+import { ADD_POST_REQUEST, LOAD_POST_REQUEST } from '../../reducers/post';
 
 const NewPostButton = styled(Button)`
     margin-left: 1.25rem;
@@ -46,6 +46,8 @@ export default function BlogForm() {
                 content: text,
             }
         });
+
+        setText('');
 
 
     },[text]);

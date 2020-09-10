@@ -48,10 +48,11 @@ router.get('/posts', async(req,res,next)=> {
             value = parseInt((req.query.off - 1) * 10, 10); 
         }
 
-        const posts = await db.Post.findAll({
+        const posts = await db.Post.findAndCountAll({
 
             include: [{
                 model: db.User,
+                required: true,
                 attributes: ['name','email'],
               }],
 

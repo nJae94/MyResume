@@ -62,9 +62,7 @@ export default function Blog() {
 
     },[pages]);
 
-    const {mainPosts} = useSelector((state) => state.post);
-
-    console.log(mainPosts);
+    const {mainPosts, PostCount} = useSelector((state) => state.post);
 
     return (
         <>
@@ -74,7 +72,7 @@ export default function Blog() {
 
             <ContentWrapper>
                 {
-                   mainPosts.length > 0 && mainPosts.map((m) => {
+                   PostCount > 0 && mainPosts.map((m) => {
                         return (
                            
                                 <Card key={m.createdAt} style={{ width: '60%', marginTop: 16 }}>
@@ -92,7 +90,7 @@ export default function Blog() {
                 }
                 
 
-                <Pagination style={{marginTop:'2rem'}} current={pages} onChange={onChange} total={mainPosts.length} />
+                <Pagination style={{marginTop:'2rem'}} current={pages} onChange={onChange} total={PostCount} />
             </ContentWrapper>
         </>
     )
