@@ -96,8 +96,6 @@ const Header = () => {
   console.log(user);
 
   const onClick = ({ key }) => {
-    message.info(`Move ${key}`);
-
      router.push(`${key}`);
   };
 
@@ -106,7 +104,7 @@ const Header = () => {
     <Menu onClick={onClick}>
       <Menu.Item key="/stack">스택</Menu.Item>
       <Menu.Item key="/project">프로젝트</Menu.Item>
-      <Menu.Item key="/blog">블로그</Menu.Item>
+      <Menu.Item key="/blog">방명록</Menu.Item>
     </Menu>
   );
     

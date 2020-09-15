@@ -45,15 +45,22 @@ export default function ProjectForm() {
 
   const {Project, loadProjectDone} = useSelector((state) => state.project);
 
-  const {user} = useSelector((state)=> state.user);
-
-  console.log(Project.length);
+  const {user, loadUserDone} = useSelector((state)=> state.user);
 
   const dispatch = useDispatch();
 
   useEffect(()=> {
 
-    if(!user)
+      dispatch({
+          type: LOAD_USER_REQUEST,
+      })
+  },[]);
+
+  console.log(user);
+
+  useEffect(()=> {
+
+    if(loadUserDone && !user)
     {
       alert("로그인 후 확인 하실 수 있습니다.");
       Router.replace('/');
@@ -68,7 +75,7 @@ export default function ProjectForm() {
 
     }
 
-  },[]);
+  },[user]);
 
  
 
@@ -77,7 +84,7 @@ export default function ProjectForm() {
         <Section>
           <Header>
             <TitleText className="Title">나의 프로젝트</TitleText>
-            <Link href="/Edit/project"><a><Plus/></a></Link>
+           {user && user.id === 1 ? <Link href="/Edit/project"><a><Plus/></a></Link> : null} 
           </Header>
             
             <ProjectList>

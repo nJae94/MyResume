@@ -18,6 +18,8 @@ router.post('/', async (req,res,next) => {
             },
             include: [{
                 model: db.User,
+                required: true,
+                attributes: ['name','email'],
             }],
         });
 
@@ -38,8 +40,6 @@ router.post('/', async (req,res,next) => {
 router.get('/posts', async(req,res,next)=> {
 
     try{
-
-        console.log("test");
 
         let value = 0;
 

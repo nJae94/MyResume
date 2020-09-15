@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import StackInfo from './stackInfo';
 import '../../style/font.scss';
+import { useDispatch } from 'react-redux';
+import { LOAD_USER_REQUEST } from '../../reducers/user';
 
 const Section = styled.section`
   width: 100%;
@@ -29,6 +31,16 @@ const TitleText = styled.h1`
 `;
 
 export default function Stack() {
+
+  const dispatch = useDispatch();
+
+  useEffect(()=> {
+
+    dispatch({
+        type: LOAD_USER_REQUEST,
+    })
+},[]);
+
     return (
         <Section>
             <TitleText className="Title">나의 스택 소개</TitleText>

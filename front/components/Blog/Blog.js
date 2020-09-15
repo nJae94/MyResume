@@ -4,6 +4,7 @@ import { Input, Card,Avatar,Pagination} from 'antd';
 import EidtFrom from '../../container/BlogForm'
 import { useDispatch, useSelector } from 'react-redux';
 import { LOAD_POST_REQUEST } from '../../reducers/post';
+import { LOAD_USER_REQUEST } from '../../reducers/user';
 
 
 const BlogHeader = styled.div`
@@ -52,7 +53,13 @@ export default function Blog() {
         setPages(page);
     }
 
-    console.log(pages);
+    useEffect(()=> {
+
+        dispatch({
+            type: LOAD_USER_REQUEST,
+        })
+    },[]);
+
     useEffect(()=> {
 
         dispatch({
@@ -64,6 +71,9 @@ export default function Blog() {
 
     const {mainPosts, PostCount} = useSelector((state) => state.post);
 
+    console.log(PostCount, mainPosts);
+    
+
     return (
         <>
             <BlogHeader>
@@ -72,18 +82,19 @@ export default function Blog() {
 
             <ContentWrapper>
                 {
-                   PostCount > 0 && mainPosts.map((m) => {
+                   PostCount > 0 && mainPosts.map((m,index) => {
+                       console.log(index);
                         return (
-                           
+                           index < 10 ?
                                 <Card key={m.createdAt} style={{ width: '60%', marginTop: 16 }}>
                                     <Meta
                                         avatar={
-                                        <Avatar>정</Avatar>
+                                        <Avatar>{m.User.name.split('')[0]}</Avatar>
                                         }
                                         title={m.User.name}
                                         description={m.content}
                                     />
-                                </Card>
+                                </Card> : <div key={m.createdAt}></div>
                             
                         )
                     })

@@ -9,6 +9,7 @@ export const initialState = {
     LoadPostLoding: false,
     LoadPostDone: false,
     LoadError: null,
+    test : null,
 
 }
 
@@ -29,35 +30,42 @@ const reducer = (state=initialState, action) => {
             case ADD_POST_REQUEST: 
             {
                 draft.postLoading= true;
+                draft.postDone=false;
                 draft.postError= null;
                 break;
             }
             case ADD_POST_SUCCESS:
                 {
-                    draft.postLoading= false;
-                    draft.postDone=true;
                     draft.mainPosts.unshift(action.data);
+                    draft.PostCount =  draft.PostCount + 1;
+                    draft.postDone = true;
+                    draft.postLoading = false;
+                    break;
                 }
             case ADD_POST_FAILURE:
                 {
                     draft.postLoading= false;
                     draft.postError = action.error;
+                    break;
                 }
 
             case LOAD_POST_REQUEST:
             {
                 draft.LoadPostLoding = true;
                 draft.LoadError = null;
+                break;
             }
 
             case LOAD_POST_SUCCESS: {
                 draft.LoadPostLoding = false;
                 draft.mainPosts = action.data.rows;
                 draft.PostCount = action.data.count;
+                break;
             }
             case LOAD_POST_FAILURE : {
                 draft.LoadPostLoding = false;
                 draft.LoadError = action.error;
+                break;
             }
 
             default:

@@ -1,7 +1,7 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState, useCallback, useEffect} from 'react';
 import styled from 'styled-components';
 import { Input, Form, Button} from 'antd';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ADD_POST_REQUEST, LOAD_POST_REQUEST } from '../../reducers/post';
 
 const NewPostButton = styled(Button)`
@@ -29,9 +29,14 @@ export default function BlogForm() {
 
     const dispatch = useDispatch();
 
+    const {user} = useSelector((state)=> state.user);
+
     const onClick = useCallback((e)=> {
-        
-        console.log(text);
+
+        if(!user)
+        {
+            return alert('로그인을 진행해주세요.');
+        }
 
         if(!text)
         {
@@ -42,7 +47,7 @@ export default function BlogForm() {
         dispatch({
             type: ADD_POST_REQUEST,
             data : {
-                UserId:1,
+                UserId:user.id,
                 content: text,
             }
         });
@@ -50,7 +55,19 @@ export default function BlogForm() {
         setText('');
 
 
+
     },[text]);
+
+   
+
+    useEffect(()=> {   
+
+          dispatch({
+            type: LOAD_POST_REQUEST,
+            data: 1,
+          });
+    
+      },[]);
 
 
     return (
