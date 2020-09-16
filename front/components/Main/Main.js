@@ -2,8 +2,11 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { Row, Col, Card } from 'antd';
 import About from './about';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {LOAD_USER_REQUEST} from '../../reducers/user';
+import { LOAD_POST_REQUEST } from '../../reducers/post';
+import wrapper from '../../store/configureStore';
+import { END } from 'redux-saga';
 
 const Wrapper = styled.div`
     display:flex;
@@ -59,12 +62,24 @@ const Main = () => {
 
     const dispatch = useDispatch();
 
-    useEffect(()=> {
+    // useEffect(()=> {
 
-        dispatch({
-            type: LOAD_USER_REQUEST,
-        })
-    },[]);
+    //     dispatch({
+    //         type: LOAD_USER_REQUEST,
+    //     });
+
+    // },[]);
+
+    // useEffect(()=> {
+    //     dispatch({
+    //         type: LOAD_POST_REQUEST,
+    //         data: 1,
+    //     })
+    // },[]);
+
+    const {mainPosts} = useSelector((state) => state.post);
+
+    console.log(mainPosts);
     
     return (
     <Wrapper>
@@ -76,11 +91,15 @@ const Main = () => {
             <Row>
                 <Col span={24}>
                     <section>
-                        <h4>최근 댓글</h4>
+                        <h4>최근 방명록</h4>
                         <ul>
-                            <li>댓글1</li>
-                            <li>댓글1</li>
-                            <li>댓글1</li>
+                            {
+                                mainPosts &&  mainPosts.map((m,index)=> {
+                                    return (
+                                        index < 3 ? <li key={m.id}>{m.content}</li> : null
+                                    )
+                                })
+                            }
                         </ul>
                     </section>
                 </Col>
@@ -90,4 +109,5 @@ const Main = () => {
     )
 }
 
+  
 export default Main;

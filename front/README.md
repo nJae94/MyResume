@@ -83,3 +83,10 @@ const enhancer = process.env.NODE_ENV === 'production'
 ```
 - next-redux-wrapper 를 사용
 
+# getStaticProps 
+
+- 언제 렌더링되더라도 변할 일 없을때
+
+# getServerSideProps
+
+- 접속한 상황에 따라 바뀌어야 할 떄

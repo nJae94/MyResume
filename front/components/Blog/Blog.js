@@ -7,6 +7,7 @@ import { LOAD_POST_REQUEST } from '../../reducers/post';
 import { LOAD_USER_REQUEST } from '../../reducers/user';
 
 
+
 const BlogHeader = styled.div`
     margin-top: 2rem;
     display: flex;
@@ -39,7 +40,7 @@ const ContentWrapper = styled.div`
     flex-direction: column;
 `;
 
-
+  
 
 export default function Blog() {
 
@@ -56,13 +57,6 @@ export default function Blog() {
     useEffect(()=> {
 
         dispatch({
-            type: LOAD_USER_REQUEST,
-        })
-    },[]);
-
-    useEffect(()=> {
-
-        dispatch({
             type: LOAD_POST_REQUEST,
             data: pages,
         });
@@ -70,8 +64,6 @@ export default function Blog() {
     },[pages]);
 
     const {mainPosts, PostCount} = useSelector((state) => state.post);
-
-    console.log(PostCount, mainPosts);
     
 
     return (
@@ -83,7 +75,7 @@ export default function Blog() {
             <ContentWrapper>
                 {
                    PostCount > 0 && mainPosts.map((m,index) => {
-                       console.log(index);
+                       
                         return (
                            index < 10 ?
                                 <Card key={m.createdAt} style={{ width: '60%', marginTop: 16 }}>
@@ -94,7 +86,7 @@ export default function Blog() {
                                         title={m.User.name}
                                         description={m.content}
                                     />
-                                </Card> : <div key={m.createdAt}></div>
+                                </Card> : null
                             
                         )
                     })

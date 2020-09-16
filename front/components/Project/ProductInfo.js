@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from "styled-components";
+import Moment from 'react-moment';
 
 const CardContainer = styled.div`
 
@@ -133,7 +134,7 @@ export default function ProductInfo({project}) {
 
                 <CardMeta>
                     <label>{project.category}</label>
-                    <label>{project.createdAt}</label>
+                    <label><Moment format="YYYY/MM/DD">{project.createdAt}</Moment></label>
                 </CardMeta>
             </CardInfo>
            

@@ -8,7 +8,9 @@ const Wrapper = styled.div`
     width:80%;
 `;
 
-const stack = () => {
+
+
+const project = () => {
 
     const dispatch = useDispatch();
 
@@ -25,4 +27,6 @@ const stack = () => {
     )
 }
 
-export default stack;
+
+
+export default project;
