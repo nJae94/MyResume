@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from "styled-components";
 import Moment from 'react-moment';
+import Link from 'next/link';
 
 const CardContainer = styled.div`
 
@@ -117,20 +118,20 @@ export default function ProductInfo({project}) {
 
             <CardImage src={`http://localhost:3065/${project.Images[0].src}`}>
 
-            <CardPartList>
-              {tags.map((t,index)=> {
-                return (
-                  <CardPart key={t}>{t}</CardPart>
-                )
-              })}
-                
-            </CardPartList>
+              <CardPartList>
+                {tags.map((t,index)=> {
+                  return (
+                    <CardPart key={t}>{t}</CardPart>
+                  )
+                })}
+                  
+              </CardPartList>
             </CardImage>
 
             <CardInfo>
                 <CardCategory >{project.kinds}</CardCategory>
 
-                <CardTitle>{project.title}</CardTitle>
+                <CardTitle><Link href={`/detail/${project.id}`}><a style={{color:'black'}}>{project.title}</a></Link></CardTitle>
 
                 <CardMeta>
                     <label>{project.category}</label>

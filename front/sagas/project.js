@@ -9,7 +9,9 @@ import {
       ADD_PROJECT_REQUEST,
       LOAD_PROJECT_REQUEST,
       LOAD_PROJECT_SUCCESS,
-      LOAD_PROJECT_FAILURE
+      LOAD_PROJECT_FAILURE, 
+      LOAD_PROJECT_SINGLE_REQUEST,
+      LOAD_PROJECT_SINGLE_FAILURE, LOAD_PROJECT_SINGLE_SUCCESS
     } from '../reducers/project';
 
 
@@ -101,7 +103,7 @@ function* LoadProject(action)
   {
     yield put({
       type: LOAD_PROJECT_FAILURE,
-      error: e.response.data
+      error: e.response.data,
     });
   }
 }
@@ -110,11 +112,45 @@ function* watchLoadProject() {
   yield takeLatest(LOAD_PROJECT_REQUEST, LoadProject);
 }
 
+//--------------------------------------------------------------------------------------------------프로젝트 로드
+
+function LoadSingleProjectAPI(data) {
+
+  return axios.get(`/detail/${data}`);
+}
+
+function* LoadSingleProject(action)
+{
+
+  try{
+    
+    const result = yield call(LoadSingleProjectAPI, action.data);
+    
+    yield put({
+      type:LOAD_PROJECT_SINGLE_SUCCESS,
+      data: result.data,
+    });
+
+  }
+  catch(e)
+  {
+    yield put({
+      type: LOAD_PROJECT_SINGLE_FAILURE,
+      error: e.response.data,
+    });
+  }
+}
+
+function* watchLoadSingleProject() {
+  yield takeLatest(LOAD_PROJECT_SINGLE_REQUEST, LoadSingleProject);
+}
+
 export default function* projectSaga() {
     
     yield all([
         fork(watchUploadImage),
         fork(watchUploadProject),
         fork(watchLoadProject),
+        fork(watchLoadSingleProject),
     ]);
   }

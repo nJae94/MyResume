@@ -95,9 +95,9 @@ router.get('/:id', async(req,res,next) => {
 
   try
   {
-    console.log("테스트");
-    console.log(req.params.id);
 
+    console.log("이건 디테일 아닌데", req.params.id);
+    
     const project = await Project.findAll({
       where: {
         UserId: parseInt(req.params.id, 10)
@@ -118,5 +118,8 @@ router.get('/:id', async(req,res,next) => {
 
   }
 });
+
+
+
 
 module.exports = router;

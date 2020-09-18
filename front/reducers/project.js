@@ -10,6 +10,10 @@ export const initialState = {
     addProjectDone: false,
     addProjectError: null,
     loadProjectDone : false,
+    loadProjectError : null,
+    singleProject : null,
+    loadSingleProjectDone : false,
+    loadSingleProjectError : null,
 }
 
 export const UPLOAD_IMAGE_REQUEST = 'UPLOAD_IMAGE_REQUEST';
@@ -23,6 +27,10 @@ export const ADD_PROJECT_FAILURE = 'ADD_PROJECT_FAILURE';
 export const LOAD_PROJECT_REQUEST = 'LOAD_PROJECT_REQUEST';
 export const LOAD_PROJECT_SUCCESS = 'LOAD_PROJECT_SUCCESS';
 export const LOAD_PROJECT_FAILURE = 'LOAD_PROJECT_FAILURE';
+
+export const LOAD_PROJECT_SINGLE_REQUEST = 'LOAD_PROJECT_SINGLE_REQUEST'
+export const LOAD_PROJECT_SINGLE_SUCCESS = 'LOAD_PROJECT_SINGLE_SUCCESS'
+export const LOAD_PROJECT_SINGLE_FAILURE = 'LOAD_PROJECT_SINGLE_FAILURE'
 
 const reducer = (state=initialState, action) => {
 
@@ -82,11 +90,32 @@ const reducer = (state=initialState, action) => {
                     draft.Project.push(d);
                   });
                   draft.loadProjectDone = true;
+                  draft.loadProjectError = null;
                   break;
               }
               case LOAD_PROJECT_FAILURE: {
+                  draft.loadProjectError = action.error;
                   break;
               }
+
+              case LOAD_PROJECT_SINGLE_REQUEST: {
+                draft.loadSingleProjectDone = false;
+                draft.singleProject = null;
+                break;
+            }
+
+            case LOAD_PROJECT_SINGLE_SUCCESS: {
+                
+                draft.singleProject = action.data;
+                draft.loadSingleProjectDone = true;
+                draft.loadSingleProjectError = null;
+                break;
+            }
+            case LOAD_PROJECT_SINGLE_FAILURE: {
+                draft.loadSingleProjectError = action.error;
+                break;
+            }
+
 
             default:
                 {break;}
