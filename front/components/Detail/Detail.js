@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import '../../style/font.scss';
 import { Row, Col } from 'antd';
 import Slider from "react-slick";
+import { Descriptions } from 'antd';
+import "./Detail.scss"
 
 const Wrapper = styled.div`
     display:flex;
@@ -35,6 +37,17 @@ const CardImage = styled.div`
   }
 `;
 
+const Cell = styled(Col)`
+
+margin-left: 4rem;
+
+@media (max-width: 500px) {
+
+    margin-left: 0px;
+
+  }
+
+`;
 
 function Detail({project}) {
 
@@ -54,23 +67,27 @@ function Detail({project}) {
             <TitleText className='Title'> {project.title} </TitleText>
 
             <Row>
-                <Col span={12}>
+                <Col xs={24} lg={12} >
                     {project.Images.length === 1 ?
-                          <div><img src={`http://localhost:3065/${project.Images[0].src}`} style={{width:'350px', height:'240px'}}/></div>  
+                          <div><img src={`http://localhost:3065/${project.Images[0].src}`} style={{width:'100%', height:'100%', border:'1px solid #dddddd', borderRadius:'4px'}}/></div>  
                            :
                            <Slider {...settings} style={{width:'100%'}}>
                             {project.Images.map((v,i)=> (
                                 <div key={v} style={{ display: 'inline-block'}}>
-                                    <img src={`http://localhost:3065/${v.src}`} style={{width:'100%', height:'500px'}}/>
+                                    <img src={`http://localhost:3065/${v.src}`} style={{width:'100%', height:'100%', border:'1px solid #dddddd',borderRadius:'4px'}}/>
                                 </div>
                             ))}
                          </Slider>
                     }
                 </Col>
 
-                <Col span={8} offset={4}>
-                    col-8
-                </Col>
+                <Cell xs={24} lg={10}>
+                    
+                        <Descriptions title="프로젝트 상세 설명" layout="vertical" >
+                             <Descriptions.Item label="Detail">{project.content}</Descriptions.Item>
+                        </Descriptions>
+                    
+                </Cell>
             </Row>
         </Wrapper>
     )

@@ -57,7 +57,7 @@ export default function career() {
         <Wrapper>
             <Career>
                 <div className="Title">웨인테크놀로지</div>
-                <div className="Date">2019.04 ~ 현재</div>
+                <div className="Date">2019.04 ~ 2020.09</div>
                 <Tooltip title="Detail">
                     <Button type="primary" shape="circle" onClick={showWeinModal} icon={<SearchOutlined />} />
                 </Tooltip>
@@ -71,7 +71,7 @@ export default function career() {
                         진행한 개발 건으로는 진영자산관리 대부의 거래원장 기능 리뉴얼 ,
                          MSI,BSI 대부업체의 나의 사건 검색 크롤링 기능과 신용정보원과 연계한 전문 개발을 진행하였으며 
                         스마트 크라우드, BF펀드와 같은 P2P 업체의 솔루션 운영 및 홈페이지 개발 및 유지보수를 진행 경험이 있습니다.</p>
-                    <p>기간 : 2019.04 ~ 현재</p>
+                    <p>기간 : 2019.04 ~ 2020.09</p>
                     <p>역할 : 사원/ 웹 개발자</p>
                 </Modal>
             </Career>

@@ -85,7 +85,7 @@ export default function about() {
                             저는
                             <Typed
                                 strings={[
-                                "React","PHP","JavaScript","GraphQL","HTML5"]}
+                                "Front-end","React","PHP","JavaScript"]}
                                 typeSpeed={40}
                                 backSpeed={50}
                                 attr="placeholder"

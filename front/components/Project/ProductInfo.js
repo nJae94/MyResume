@@ -52,7 +52,8 @@ const CardImage = styled.div`
   background-repeat: no-repeat;
   position: relative;
   border-radius: 4px;
-  
+  border: 1px solid #dddddd;
+
   @media (max-width: 400px) {
     height: 180px;
   }
@@ -133,7 +134,7 @@ export default function ProductInfo({project}) {
 
                 <CardTitle><Link href={`/detail/${project.id}`}><a style={{color:'black'}}>{project.title}</a></Link></CardTitle>
 
-                <CardMeta>
+                <CardMeta className="Semi">
                     <label>{project.category}</label>
                     <label><Moment format="YYYY/MM/DD">{project.createdAt}</Moment></label>
                 </CardMeta>

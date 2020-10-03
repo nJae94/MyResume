@@ -27,6 +27,10 @@ const LeftMenu = styled.div`
 
 const RightMenu = styled.div`
     width:20%;
+
+    @media (max-width: 500px) {
+        width: 100%;
+      }
 `;
 
 const Post = styled(Card)`
