@@ -52,6 +52,10 @@ const ContactText = styled.div`
     font-size: 24px;
     justify-content: flex-start;
     text-align:left;
+
+    @media screen and (max-width: 768px) {
+        font-size:18px;
+    }
 `;
 const ContactImage = styled.div`
     display: flex;
@@ -81,7 +85,7 @@ export default function about() {
                     </Cell>
                     <Cell xs={24} md={12} lg={12} >
                         <Text className="info">
-                            <Info>새로운 기술에 대한 관심<br/>배우고자 하는 열정 <br/>배움을 통한 성장 </Info>
+                            <Info>타인의 생각에 공감하는 자세<br/>새로운 기술에 대한 관심<br/>배우고자 하는 열정<br/>배움을 통한 성장 </Info>
                             저는
                             <Typed
                                 strings={[

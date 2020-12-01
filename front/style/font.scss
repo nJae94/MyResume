@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Pen+Script&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Miriam+Libre&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400&display=swap');
 
 .Title {
     font-family: 'Do Hyeon', sans-serif;
@@ -15,5 +16,10 @@
 .Semi {
     font-family: 'Miriam Libre', sans-serif;
     font-weight: 600;
+}
+
+.nomal {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 18px;
 }
 

@@ -6,6 +6,9 @@ import { useRouter } from 'next/router'
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import UserInfo from './UserInfo';
+import {
+  LoginOutlined
+} from '@ant-design/icons'
 
 const HeaderWrapper = styled.div`
   width: 100%;
@@ -26,7 +29,7 @@ const HeaderWrapper = styled.div`
 const HeaderColumn = styled.div`
   flex-basis:33%;
   text-align: center;
-  verticalAlign: middle;
+  vertical-align: middle;
   flex-shrink:1;
   .logo {
     font-size: 30px;
@@ -47,10 +50,13 @@ const HeaderColumn = styled.div`
       margin-bottom: 0.2rem;
     }
 
+    @media screen and (max-width: 768px) {
+      display:none;
+    }
+
   }
 
   &:first-child {
-    
     text-align: center;
   }
 
@@ -68,6 +74,7 @@ const HeaderColumn = styled.div`
     }
 
     @media screen and (max-width: 768px) {
+      
       span {
         display:none;
       }
@@ -79,8 +86,10 @@ const Login = styled.div`
   display:none;
 
   @media screen and (max-width: 768px) {
+
     display:block;
-    button {
+  
+    div {
       border: none;
       background-color:white;
     }
@@ -109,13 +118,13 @@ const Header = () => {
   );
     
     return (
-        <HeaderWrapper>
+        <HeaderWrapper className="nomal">
           <HeaderColumn>
           <Dropdown overlay={menu}>
               <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
                 <MenuIcon/>
               </a>
-            </Dropdown>
+          </Dropdown>
           </HeaderColumn>
           <HeaderColumn>
             <Link href="/">
@@ -131,20 +140,20 @@ const Header = () => {
           </HeaderColumn>
           
           <HeaderColumn>
-           {user ? <UserInfo/>
-           
-           :
+          {user ? <UserInfo/>
+          :
 
            <>
               <span> 
-               <Link href="/login"><a style={{color: '#000000'}}>로그인</a></Link>
-               </span>
+                <Link href="/login"><a style={{color: '#000000'}}>로그인</a></Link>
+              </span>
                             
                 <span> 
                   <Link href="/singup"><a style={{color: '#000000'}}>회원가입</a></Link>
                 </span>
+
                 <Login>
-                  <button>로그인</button>
+                  <Link href="/login"><a><LoginIcon /></a></Link>
                 </Login>
            </>
           }

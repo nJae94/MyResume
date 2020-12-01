@@ -69,15 +69,14 @@ export default function Blog() {
     return (
         <>
             <BlogHeader>
-               <EidtFrom />
+                <EidtFrom />
             </BlogHeader>
 
-            <ContentWrapper>
+            <ContentWrapper className="nomal">
                 {
-                   PostCount > 0 && mainPosts.map((m,index) => {
-                       
+                    PostCount > 0 && mainPosts.map((m,index) => {
                         return (
-                           index < 10 ?
+                        index < 10 ?
                                 <Card key={m.createdAt} style={{ width: '60%', marginTop: 16 }}>
                                     <Meta
                                         avatar={

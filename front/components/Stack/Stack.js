@@ -11,11 +11,16 @@ const Section = styled.section`
   display: flex;
   margin-top: 3rem;
   flex-direction: column;
+
   @media (max-width: 768px) {
     width: 90%;
   }
   @media (max-width: 500px) {
     width: 92%;
+  }
+  @media (min-width: 2000px) {
+    margin-left:10%;
+    width: 100%;
   }
 `;
 const StackList = styled.div`
@@ -47,7 +52,6 @@ export default function Stack() {
 
             <StackList>
                 <StackInfo/>
-
             </StackList>
         </Section>
     )

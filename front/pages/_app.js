@@ -2,7 +2,7 @@ import React from 'react';
 import {Helmet} from 'react-helmet';
 import AppLayout from '../components/AppLayout'
 import wrapper from '../store/configureStore';
-
+import styled from 'styled-components';
 
 
 const App = ({Component, pageProps}) => {
@@ -40,7 +40,9 @@ const App = ({Component, pageProps}) => {
             />
             <>
               <AppLayout>
+                <Wrapper>
                   <Component {...pageProps}/>
+                </Wrapper>
               </AppLayout>
             </>   
         </>
@@ -49,3 +51,9 @@ const App = ({Component, pageProps}) => {
 };
 
 export default wrapper.withRedux(App);
+
+const Wrapper = styled.div`
+  width:80%;
+  display: flex;
+  justify-content: center;
+`;
